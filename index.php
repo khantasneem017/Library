@@ -79,7 +79,7 @@
         </div>
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="assets/1.jpg" class="d-block w-100" alt="...">
+            <img src="assests/python_for_slide.jpg" class="d-block w-100" alt="...">
             <div class="carousel-caption d-none d-md-block">
               <h3>Welcome to Let's Read!</h3>
               <p>Read,Learn,Inspire</p>
