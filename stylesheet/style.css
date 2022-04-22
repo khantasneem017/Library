@@ -6,6 +6,10 @@
     box-sizing: border-box;
     font-family: 'Poppins', sans-serif;
 }
+.page-name{
+    font-family: 'Brush script STD', cursive ;
+    font-size: 3vh;
+}
 body{
     /* background-color: #F7F3F5; */
     background-size: cover;
@@ -38,6 +42,17 @@ body{
     background-color: #EFE6EA;
     width: 60% !important;
     border-radius: 5%;
+}
+.welcome-note{
+    padding: 2px;
+    color: rgb(255, 255, 255);
+    /* font-family:'Brush Script MT', cursive; */
+    background-color: rgba(208, 217, 217, 0.25);
+  
+}
+em{
+    font-family: 'Brush Script STD', cursive;
+   
 }
 .row{
     padding: 15px;

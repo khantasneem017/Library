@@ -17,7 +17,7 @@
     <!-- Nav Bar-->
     <nav class="navbar navbar-expand-lg navbar-dark bglavender">
         <div class="container-fluid">
-            <a class="navbar-brand" href="index.php">Let's Read</a>
+            <a class="navbar-brand page-name" href="index.php">Let's Read</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
             data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -79,29 +79,29 @@
         </div>
         <div class="carousel-inner">
           <div class="carousel-item active">
-            <img src="assests/python_for_slide.jpg" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-              <h3>Welcome to Let's Read!</h3>
-              <p>Read,Learn,Inspire</p>
-              <button class="btn btn-danger">Books</button>
-                    <button class="btn btn-primary">News</button>
-                    <button class="btn btn-success">Journal and reasearch papers</button>
-            </div>
-          </div>
-          <div class="carousel-item">
-            <img src="assets/2.jpg" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-                <h3>Welcome to Let's Read!</h3>
+            <img src="assests/1.jpg" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block welcome-note">
+                <h3><strong>Welcome to <em>Let's Read!</em></strong></h3>
                 <p>Read,Learn,Inspire</p>
                 <button class="btn btn-danger">Books</button>
-                    <button class="btn btn-primary">News</button>
-                    <button class="btn btn-success">Journal and reasearch papers</button>
+                <button class="btn btn-primary">News</button>
+                <button class="btn btn-success">Journal and reasearch papers</button>
             </div>
           </div>
           <div class="carousel-item">
-            <img src="assets/3.jpg" class="d-block w-100" alt="...">
-            <div class="carousel-caption d-none d-md-block">
-                <h3>Welcome to Let's Read!</h3>
+            <img src="assests/3.jpg" class="d-block w-100" alt="...">
+            <div class="carousel-caption d-none d-md-block welcome-note">
+                <h3><strong>Welcome to <em>Let's Read!</em></strong></h3>
+                <p>Read,Learn,Inspire</p>
+                <button class="btn btn-danger">Books</button>
+                <button class="btn btn-primary">News</button>
+                <button class="btn btn-success">Journal and reasearch papers</button>
+            </div>
+          </div>
+          <div class="carousel-item">
+            <img src="assests/2.jpg" class="d-block w-100 " alt="...">
+            <div class="carousel-caption d-none d-md-block welcome-note">
+                <h3><strong>Welcome to <em>Let's Read!</em></strong></h3>
                 <p>Read,Learn,Inspire</p>
                 <button class="btn btn-danger">Books</button>
                     <button class="btn btn-primary">News</button>
