@@ -49,7 +49,7 @@
                         </ul>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" href="feedback.php">Feedback</a>
+                        <a class="nav-link" href="/feedback.php">Feedback</a>
                     </li>
                 </ul>
                 <form class="d-flex">
