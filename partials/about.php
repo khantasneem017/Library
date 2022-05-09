@@ -32,7 +32,7 @@
                         <a class="nav-link" aria-current="page" href="../index.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link active" href="/about.html">About</a>
+                        <a class="nav-link active" href="/about.php">About</a>
                     </li>
                     <li class="nav-item dropdown">
                         <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button"
@@ -49,7 +49,7 @@
                         </ul>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" href="/feedback.php">Feedback</a>
+                        <a class="nav-link" href="feedback.php">Feedback</a>
                     </li>
                 </ul>
                 <form class="d-flex">
