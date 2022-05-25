@@ -44,7 +44,7 @@
                             <li><a class="dropdown-item" href="/categories.php">Story</a></li>
                             <li><a class="dropdown-item" href="/categories.php">Novels</a></li>
                             <li><a class="dropdown-item" href="/categories.php">News</a></li>
-                            <li><a class="dropdown-item" href="/categories.php">Journal & reasearch papers</a></li>
+                            
                         </ul>
                     </li>
                     <li class="nav-item">

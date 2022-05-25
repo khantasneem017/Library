@@ -139,30 +139,30 @@
         }
 
 ?>
-    <div class="container mt-5 shadow-lg ">
+    <div class="container mt-5 shadow-lg feedback-container">
         <div class="row">
             <div class="col-md-3"></div>
 
                     <h1 class="text-black">Upload Book</h1>  
                     <hr> 
                     <form action="create_book.php" method='post' enctype="multipart/form-data">
-                        <div>
+                        <div class="mb-3 text-black">
                             <label for="books" class="form-label">Book Name</label>
                             <input type="text" class="form-control" name="book_name" id="books">
                         </div>
-                        <div>
+                        <div class="mb-3 text-black">
                             <label for="author" class="form-label">Author</label>
                             <input type="text" class="form-control" name="author" id="author">
                         </div>
-                        <div>
+                        <div class="mb-3 text-black">
                             <label for="publisher" class="form-label">Publisher</label>
                             <input type="text" class="form-control" name="publisher" id="publisher">
                         </div>
-                        <div>
+                        <div class="mb-3 text-black">
                             <label for="pub_date" class="form-label">Publishing Date</label>
                             <input type="number" class="form-control" min="0" max="3000" name="pub_date" id="pub_date">
                         </div>
-                        <div>
+                        <div class="mb-3 text-black">
                             <label for="sub-id" class="form-label">Subject</label>
                             <select class="form-select" name="sub-id" id="sub-id">
                                 <option selected>-Select</option>
@@ -171,7 +171,7 @@
                                 <?php endwhile;?>
                             </select>
                         </div>
-                        <div>
+                        <div class="mb-3 text-black">
                         <label for="cat-id" class="form-label">Category</label>
                             <select class="form-select" name="cat-id" id="cat-id">
                                 <option selected>-Select</option>
@@ -180,28 +180,28 @@
                                 <?php endwhile;?>
                             </select>
                         </div>
-                        <div>
-                            <label for="ratings">Ratings</label>
-                            <input type="number" min="0" max="5" name="ratings" id="ratings">
+                        <div class="mb-3 text-black">
+                            <label for="ratings" class="form-label">Ratings</label>
+                            <input type="number" class="form-control" min="0" max="5" name="ratings" id="ratings">
                         </div>
-                        <div>
-                            <label for="isbn">ISBN</label>
-                            <input type="number" min='0' max='9999999999999' name="isbn" id="isbn">
+                        <div class="mb-3 text-black">
+                            <label for="isbn" class="form-label">ISBN</label>
+                            <input type="number" class="form-control" min='0' max='9999999999999' name="isbn" id="isbn">
                         </div>
-                        <div>
-                            <label for="pages">Total Pages</label>
-                            <input type="number" min='1' max='5000' name="pages" id="pages">
+                        <div class="mb-3 text-black">
+                            <label for="pages" class="form-label">Total Pages</label>
+                            <input type="number" class="form-control" min='1' max='5000' name="pages" id="pages">
                         </div>
-                        <div>
-                            <label for="book_cover_file">Book cover</label>
-                            <input type="file" name="book_cover_file" id="book_cover_file" accept=".jpg, .png, .jpeg">
+                        <div class="mb-3 text-black">
+                            <label for="book_cover_file" class="form-label">Book cover</label>
+                            <input type="file" class="form-control" name="book_cover_file" id="book_cover_file" accept=".jpg, .png, .jpeg">
                         </div>
-                        <div>
-                            <label for="book_file">Book file</label>
-                            <input type="file" name="book_file" id="book_file" accept=".pdf">
+                        <div class="mb-3 text-black">
+                            <label for="book_file" class="form-label">Book file</label>
+                            <input type="file" class="form-control" name="book_file" id="book_file" accept=".pdf">
                         </div>
-                        <div>
-                            <button type="submit" >Upload</button>
+                        <div class="col-auto button">
+                            <button type="submit" class='btn btn-primary'>Upload</button>
                         </div>
                     </form>
         </div>

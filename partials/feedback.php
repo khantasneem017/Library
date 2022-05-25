@@ -50,7 +50,7 @@
                         </ul>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link active" href="feedbackform.php">Feedback</a>
+                        <a class="nav-link active" href="feedback.php">Feedback</a>
                     </li>
                 </ul>
                 <form class="d-flex">
@@ -127,12 +127,12 @@
                     </div>
                     
                     <div class="mb-3 text-black">
-                        <label for="formGroupExampleInput" class="form-label">Name</label>
+                        <label for="name" class="form-label">Name</label>
                         <input type="text" class="form-control" name="name" id="name" placeholder="Enter your full name." required="">
                     </div>
                     <div class="mb-3 text-black"> 
                 
-                        <label for="formGroupExampleInput2" class="form-label">Email</label>
+                        <label for="email" class="form-label">Email</label>
                         <input type="text" class="form-control" name="email" id="email" placeholder="Enter your e-mail address. " required="">
                     </div>
                     <div class="form-group mb-2 text-black">
