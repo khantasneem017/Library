@@ -59,8 +59,7 @@
                     <script scr="js/signup.js"></script>
                     <button class="btn btn-primary"  data-bs-target="#login">Login</button>
                     <button class="btn btn-primary"  data-bs-target="#signup" 
-                    onclick="window.location.href='http://localhost/project/project_file/Library_project/partials/signup.php'" >
-                    SignUp</button>
+                    onclick="window.location.href='http://localhost/library/library/partials/signup.php'" >                    SignUp</button>
                     
                 </div>
             </div>

@@ -59,53 +59,109 @@
         </div>
     </nav>
     <?php
-    // Connect to the database
-    $servername= "localhost";
-    $username= "root";
-    $password= "";
-    $database= "library";
-
-    //create a connection
-    $conn = mysqli_connect($servername, $username, $password, $database );
-    if(!$conn){
-        die("Sorry we fail to connect.". mysqli_connect_error());
-    }
-    else{
-        //Connecting the table
-        
-        if($_SERVER['REQUEST_METHOD'] == 'POST'){
-            $email=$_POST['email-id'];
-            $fname=$_POST['first_name'];
-            $lname=$_POST['last_name'];
-            $pass=$_POST['password'];  
-            $phone=$_POST['phone'];
-            $conpass=$_POST['cpassword'];
-            $sql="INSERT INTO `user` (`password`, `first_name`, `last_name`, `phone`, `signup_date`, `email_id`) 
-            VALUES ('$pass','$fname', '$lname', '$phone', current_timestamp(), '$email');";
-            $result=mysqli_query($conn,$sql);
-            if($pass==$conpass){
-        
-                if($result){
-                    echo 'successful';
-                }
-                else{
-                    echo "The record was not successfully inserted";
-                }
+   //Connecting the table
+   require_once "connection.php";  
+   $email = $pass = $conpass = "";
+   $email_err = $pass_err = $conpass_err = "";
+   
+   if($_SERVER['REQUEST_METHOD'] == 'POST'){
+       //
+       $fname=$_POST['first_name'];
+       $lname=$_POST['last_name'];
+       $phone=$_POST['phone'];
+       //check if email is empty
+            if(empty(trim($_POST['email-id']))){
+                $email_err = "Email id cannot be blank.";
             }
             else{
-        
-                echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
-                <strong>Error!</strong> Password does not match.
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-                </div>';
+                $query = "SELECT user_id FROM user WHERE email_id = ?";
+                $stmt  = mysqli_prepare($conn,$query);
+                if($stmt){
+                    mysqli_stmt_bind_param($stmt,"s", $param_email);
+
+                    //set the value of param_email
+                    $param_email = trim($_POST['email-id']);
+
+                    //Try to execute this statement
+                    if(mysqli_stmt_execute($stmt)){
+                        mysqli_stmt_store_result($stmt);
+                        if(mysqli_stmt_num_rows($stmt)== 1){
+                            $email_err = "This user name is already taken";
+                        }
+                        else{
+                            $email = trim($_POST['email-id']);
+                        }
+                    }
+                    else{
+                        echo "Something went wrong.";
+                    }
+                }
             }
+            mysqli_stmt_close($stmt);
+            //check for password
+            if(empty(trim($_POST['password']))){
+                $pass_err= "Password cannot be blank.";
+            }
+            elseif(strlen(trim($_POST['password'])) < 5){
+                $pass_err = "Password cannot be less than 5 charater.";
+            }
+            else{
+                $pass =trim($_POST['password']);
+            }
+            //check for  confirm password
+            if(trim($_POST['password']) != trim($_POST['cpassword'])){
+                $pass_err = "Password should match.";
+            }
+            //if there were no error then insert into database
+            if(empty($email_err) && empty($pass_err) && empty($conpass_err)){
+                $sql="INSERT INTO `user` (`password`, `first_name`, `last_name`, `phone`, `signup_date`, `email_id`) 
+                VALUES ('$pass','$fname', '$lname', '$phone', current_timestamp(), '$email');";
+                $stmt = mysqli_prepare($conn,$sql);
+                if($stmt){
+                    mysqli_stmt_bind_param($stmt, "ss", $param_pass);
+
+                    //set these parameters
+                    $param_email = $email;
+                    $param_pass  = password_hash($pass,PASSWORD_DEFAULT);
+                }
+                // TRY tro execute the query
+                if(mysqli_stmt_execute($stmt)){
+                    header("location: loginpage.php");
+                }
+                else{
+                    echo "Something went wrong.. Cannot redirect!";
+                }
+                mysqli_stmt_close($stmt);
+            }
+        
+            // $email=$_POST['email-id'];
+            // $pass=$_POST['password'];  
+            // $conpass=$_POST['cpassword'];
+            // $result=mysqli_query($conn,$sql);
+            
+            // if($pass==$conpass){
+        
+            //     if($result){
+            //         echo 'successful';
+            //     }
+            //     else{
+            //         echo "The record was not successfully inserted";
+            //     }
+            // }
+            // else{
+        
+            //     echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+            //     <strong>Error!</strong> Password does not match.
+            //     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            //     </div>';
+            // }
+            mysqli_close($conn);
         }
       
-    }
     ?>
 
     <!-- main content -->
-    <form action="/project/project_file/Library_project/partials/signup.php" method="post">
+    <form action="/library/library/partials/signup.php" method="post">
         <div class="container mt-2 shadow-lg feedback-container">
             <div class="row">
              <div class="col-md-3"></div>
