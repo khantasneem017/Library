@@ -126,6 +126,12 @@
                 }
                 // TRY tro execute the query
                 if(mysqli_stmt_execute($stmt)){
+                    echo '<div class="alert alert-success" role="alert">
+                    <h4 class="alert-heading">Successful!</h4>
+                    <p>Welcome, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
+                    <hr>
+                    <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
+                  </div>';
                     header("location: loginpage.php");
                 }
                 else{
@@ -162,7 +168,7 @@
 
     <!-- main content -->
     <form action="/library/library/partials/signup.php" method="post">
-        <div class="container mt-2 shadow-lg feedback-container">
+        <div class="container mt-5 shadow-lg feedback-container">
             <div class="row">
              <div class="col-md-3"></div>
                 <h2 class="text-black">Sign Up</h2>
@@ -179,6 +185,7 @@
                 <div class="mb-3">
                     <label for="InputEmail1" class="form-label">Email address</label>
                     <input type="email" class="form-control" id="Email1" name="email-id" aria-describedby="emailHelp" required="">
+                    
                 </div>
                 <div class="mb-3">
                     <label for="InputEmail1" class="form-label">Phone No.</label>
@@ -198,5 +205,6 @@
 
             </div>
     </form>
+    
 </body>
 </html>

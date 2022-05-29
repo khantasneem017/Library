@@ -26,26 +26,13 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link active" aria-current="page" href="index.php">Home</a>
+                        <a class="nav-link" aria-current="page" href="index.php">Home</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="partials/about.php">About</a>
                     </li>
                     <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Categories
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item dropdown-toggle" href="/categories.php" data-bs-toggle="dropdown"
-                             aria-expanded="false">Educational</a>
-                          
-                            </li>
-                            <li><a class="dropdown-item" href="/categories.php">Story</a></li>
-                            <li><a class="dropdown-item" href="/categories.php">Novels</a></li>
-                            <li><a class="dropdown-item" href="/categories.php">News</a></li>
-                            
-                        </ul>
+                        <a class="nav-link" href="partials/about.php">Categories</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="partials/feedback.php">Feedback</a>
@@ -55,13 +42,42 @@
                     <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
                     <button class="btn animated-btn" type="submit">Search</button>
                 </form>
-                <div class="mx-2">
-                    <script scr="js/signup.js"></script>
-                    <button class="btn btn-primary"  data-bs-target="#login">Login</button>
-                    <button class="btn btn-primary"  data-bs-target="#signup" 
-                    onclick="window.location.href='http://localhost/library/library/partials/signup.php'" >                    SignUp</button>
-                    
-                </div>
+                <?php
+                    session_start();
+
+                    // if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !==true)
+                    // {
+                    //     // header("location: login.php");
+                    // }
+                    // else{
+                        
+                    // }
+                    ?>
+                    <div class="mx-2">
+                        <!-- <script scr="js/signup.js"></script> -->
+                        <?php if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !==true):?>
+                         <button class="btn btn-primary"  data-bs-target="#login"
+                            onclick="window.location.href='http://localhost/library/library/partials/loginpage.php'">
+                            Login</button>
+                         <button class="btn btn-primary"  data-bs-target="#signup" 
+                            onclick="window.location.href='http://localhost/library/library/partials/signup.php'" >  
+                            SignUp</button>
+                        
+                        <?php else: ?>
+                            <div class="navbar-collapse collapse">
+                            <ul class="navbar-nav ml-auto">
+                                <li class="nav-item active">
+                                    <a class="nav-link" href="#"> 
+                                        <img src="assests/icons8-user-50.png"> 
+                                        <?php echo "Welcome ". $_SESSION['email']?></a>
+                                </li>
+                            </ul>
+                            <button class="btn btn-primary"  data-bs-target="#login"
+                             onclick="window.location.href='http://localhost/library/library/partials/logout.php'">
+                             Logout</button>
+                            </div>
+                        <?php endif; ?>
+                    </div>
             </div>
         </div>
     </nav>
@@ -82,9 +98,9 @@
             <div class="carousel-caption d-none d-md-block welcome-note">
                 <h3><strong>Welcome to <em>Let's Read!</em></strong></h3>
                 <p>Read,Learn,Inspire</p>
-                <button class="btn btn-danger">Books</button>
-                <button class="btn btn-primary">News</button>
-                <button class="btn btn-success">Journal and reasearch papers</button>
+                <button class="btn btn-danger"><a href="#" >Books</a></button>
+                <button class="btn btn-primary"><a href="#" >News</a></button>
+                
             </div>
           </div>
           <div class="carousel-item">
@@ -94,7 +110,7 @@
                 <p>Read,Learn,Inspire</p>
                 <button class="btn btn-danger">Books</button>
                 <button class="btn btn-primary">News</button>
-                <button class="btn btn-success">Journal and reasearch papers</button>
+                
             </div>
           </div>
           <div class="carousel-item">
@@ -104,7 +120,7 @@
                 <p>Read,Learn,Inspire</p>
                 <button class="btn btn-danger">Books</button>
                     <button class="btn btn-primary">News</button>
-                    <button class="btn btn-success">Journal and reasearch papers</button>
+                   
             </div>
           </div>
         </div>

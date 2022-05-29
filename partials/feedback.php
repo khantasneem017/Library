@@ -101,13 +101,13 @@
   
     ?>
     <!-- Main content  -->
-    <div class="container mt-2 shadow-lg feedback-container">
+    <div class="container mt-5 shadow-lg feedback-container">
         <div class="row">
             <div class="col-md-3"></div>
                 <h2 class="text-black">Feedback Form</h2>
                 <p class="text-black">We welcome your comments and suggestion!</p>
                 <hr>
-                <form action="/library/library/partial/feedback.php" method="post">
+                <form action="/library/library/partials/feedback.php" method="post">
                     <div class="text-black">
                         <h5>What kind of comment would you like to send?</h5>
                         <div class="row">
