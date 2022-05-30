@@ -26,30 +26,10 @@
                         <a class="nav-link" aria-current="page" href="../index.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="about.php">About</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Categories
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="/categories.html">Action</a></li>
-                            <li><a class="dropdown-item" href="/categories.html">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="/categories.html">Something else here</a></li>
-                        </ul>
-                    </li>
-                    <li class="nav-item ">
-                        <a class="nav-link active" href="feedbackform.php">Feedback</a>
+                        <a class="nav-link active" aria-current="page" href="create_book.php">Upload Books</a>
                     </li>
                 </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn animated-btn" type="submit">Search</button>
-                </form>
+                    
             </div>
         </div>
     </nav>
@@ -99,7 +79,7 @@
             }
             
             // Allow certain file formats
-            if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg")
+            if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "webp")
              {
                 echo "Sorry, only JPG, JPEG, PNG files are allowed.";
                 $uploadOk = 0;
@@ -186,7 +166,7 @@
                         </div>
                         <div class="mb-3 text-black">
                             <label for="isbn" class="form-label">ISBN</label>
-                            <input type="number" class="form-control" min='0' max='9999999999999' name="isbn" id="isbn">
+                            <input type="text" class="form-control" min='0' max='9999999999999' name="isbn" id="isbn">
                         </div>
                         <div class="mb-3 text-black">
                             <label for="pages" class="form-label">Total Pages</label>
@@ -194,7 +174,7 @@
                         </div>
                         <div class="mb-3 text-black">
                             <label for="book_cover_file" class="form-label">Book cover</label>
-                            <input type="file" class="form-control" name="book_cover_file" id="book_cover_file" accept=".jpg, .png, .jpeg">
+                            <input type="file" class="form-control" name="book_cover_file" id="book_cover_file" accept=".jpg, .png, .jpeg, .webp">
                         </div>
                         <div class="mb-3 text-black">
                             <label for="book_file" class="form-label">Book file</label>

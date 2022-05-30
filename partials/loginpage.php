@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
     }
     if(empty($err))
     {
-        $sql = "SELECT email_id, password FROM user WHERE email_id = ?";
+        $sql = "SELECT email_id, password,role FROM user WHERE email_id = ?";
         $stmt = mysqli_prepare($conn, $sql);
         if($stmt){
             mysqli_stmt_bind_param($stmt, "s", $param_email);
@@ -35,8 +35,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
                 mysqli_stmt_store_result($stmt);
                 if(mysqli_stmt_num_rows($stmt) == 1)
                 {
-                    mysqli_stmt_bind_result($stmt,$email,$pass);
-                    echo "$pass";
+                    mysqli_stmt_bind_result($stmt,$email,$pass,$role);
+                    echo "$role";
                     if(mysqli_stmt_fetch($stmt))
                     {
                         if($password == $pass)
@@ -44,10 +44,16 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
                             // this means the password is corrct. Allow user to login
                             session_start();
                             $_SESSION["email"] = $email;
+                            $_SESSION["role"] = $role;
                             $_SESSION["loggedin"] = true;
                             
                             //Redirect user to welcome page
-                            header("location: ../index.php");
+                            if($role=="admin"){
+                                header("location: ../admin.php");
+                            }
+                            else{
+                                header("location: ../index.php");
+                            }
                             
                         } 
                         else{
@@ -173,7 +179,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
     <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
     <script>
         function myFunction(){
-            swal("Good job!", "You clicked the button!", "success");
+            swal("Good job!", "You have logged in!", "Success!!");
         }
     </script>
     
