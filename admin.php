@@ -1,3 +1,4 @@
+<?php include './partials/connection.php';?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -11,6 +12,8 @@
     <title>Admin Dashboard</title>
 </head>
 <body>
+    <?php session_start(); 
+    ?>
 <nav class="navbar navbar-expand-lg navbar-dark bglavender">
         <div class="container-fluid">
             <a class="navbar-brand page-name" href="index.php">Let's Read</a>
@@ -27,9 +30,73 @@
                     <li class="nav-item">
                         <a class="nav-link" href="partials/create_book.php">Upload Books</a>
                     </li>
+                   
                 </ul>
             </div>
         </div>
+</nav>
+<div class="container-fluid">
+    <div class="row">
+    <div class="col-sm-6">
+        <div class="card">
+        <h5 class="card-header">Books</h5>
+        <div class="card-body">
+            <h5 class="card-title">Books that are available.</h5>
+            <ul>
+                <?php 
+                    $sql= "SELECT * FROM books;";
+                        $result = mysqli_query($conn,$sql);
+                        if(mysqli_num_rows($result) > 0){
+        
+                            while($row = mysqli_fetch_assoc($result)){
+                                echo "<li>" ."<b>". $row['book_name'] . "</b>" . " by ". "<i>" . $row['author'] ."</i>"."</li>";
+                            }
+                        }
+
+                    ?>
+            </ul>
+            
+            <a href="http://localhost/library/library/partials/create_book.php" class="btn btn-primary">Add books</a>
+        </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="row">
+            <div class="card">
+                <h5 class="card-header">Users</h5>
+                <div class="card-body">
+                    <h5 class="card-title">Recent Users..</h5>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="card">
+                <h5 class="card-header">Feedback</h5>
+                <div class="card-body">
+                    <h5 class="card-title">Recent Feedbacks..</h5>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+    </div>
+    </div>
+    <div class="row">
+        <div class="col-sm-6">
+            <div class="card">
+                <div class="card-body">
+                    <h5 class="card-title">Special title treatment</h5>
+                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+</div>
     
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
