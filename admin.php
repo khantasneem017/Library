@@ -66,7 +66,16 @@
                 <h5 class="card-header">Users</h5>
                 <div class="card-body">
                     <h5 class="card-title">Recent Users..</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <?php 
+                        $query= "(SELECT * FROM `user` ORDER BY user_id DESC LIMIT 4) ORDER BY user_id ASC;";
+                        $result_query = mysqli_query($conn,$query);
+                        if(mysqli_num_rows($result_query)>0){
+                            while($user_row = mysqli_fetch_assoc($result_query)){
+                                echo "<li>" . $user_row['email_id'] . " signed up on " . $user_row['signup_date'] . "</li>";
+                            }
+                        }
+                    ?>
+                    
                     <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
             </div>
@@ -76,7 +85,17 @@
                 <h5 class="card-header">Feedback</h5>
                 <div class="card-body">
                     <h5 class="card-title">Recent Feedbacks..</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                    <dl>
+                    <?php
+                        $query1="(SELECT * FROM `feedback` ORDER BY feed_id DESC LIMIT 4) ORDER BY feed_id ASC;";
+                        $result_query1 = mysqli_query($conn,$query1) ;
+                        if(mysqli_num_rows($result_query1)>0){
+                            while($feed_row = mysqli_fetch_assoc($result_query1)){
+                                echo "<dt>" . $feed_row['email'] . "<br> Commented : </dt>"  ."<dd>" . $feed_row['comments'] . "</dd>" ;
+                            }
+                        }
+                    ?>
+                    </dl>
                     <a href="#" class="btn btn-primary">Go somewhere</a>
                 </div>
             </div>

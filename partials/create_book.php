@@ -73,7 +73,7 @@
             }
             
             // Check file size
-            if ($_FILES["book_cover_file"]["size"] > 500000) {
+            if ($_FILES["book_cover_file"]["size"] > 900000) {
                 echo "Sorry, your file is too large.";
                 $uploadOk = 0;
             }
