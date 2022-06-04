@@ -44,7 +44,7 @@
             <h5 class="card-title">Books that are available.</h5>
             <ul>
                 <?php 
-                    $sql= "SELECT * FROM books;";
+                    $sql= "(SELECT * FROM books ORDER BY book_id DESC LIMIT 8) ORDER BY book_id ASC;";
                         $result = mysqli_query($conn,$sql);
                         if(mysqli_num_rows($result) > 0){
         
@@ -101,17 +101,6 @@
             </div>
         </div>
     </div>
-    </div>
-    <div class="row">
-        <div class="col-sm-6">
-            <div class="card">
-                <div class="card-body">
-                    <h5 class="card-title">Special title treatment</h5>
-                    <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
-                </div>
-            </div>
-        </div>
     </div>
 
 
