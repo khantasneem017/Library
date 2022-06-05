@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Apr 20, 2022 at 11:27 AM
+-- Generation Time: Jun 05, 2022 at 10:28 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -36,9 +36,25 @@ CREATE TABLE `books` (
   `sub_id` int(25) NOT NULL,
   `cat_id` int(25) NOT NULL,
   `ratings` int(5) NOT NULL,
-  `isbn` int(13) NOT NULL,
-  `total_pages` int(25) NOT NULL
+  `isbn` varchar(13) NOT NULL,
+  `total_pages` int(25) NOT NULL,
+  `book_file_url` varchar(256) NOT NULL,
+  `book_cover_url` varchar(256) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `books`
+--
+
+INSERT INTO `books` (`book_id`, `book_name`, `author`, `publisher`, `publishing_date`, `sub_id`, `cat_id`, `ratings`, `isbn`, `total_pages`, `book_file_url`, `book_cover_url`) VALUES
+(221, 'Swanirbachita Kishor Samagra', 'Mahasweta Devi', 'Punoshcho', 1959, 2, 103, 4, '81-7332-087-X', 209, 'uploads/book/Swanirbachito Kishore Samagra By Mahasweta Devi (BDeBooks.Com).pdf', 'uploads/cover/Swanirbachita-Kishor-Samagra-ebook.webp'),
+(222, 'Bankim Upanyas Samagra', 'Bankim Chandra Chattopadhyay', ' Lekhapora', 2017, 2, 103, 4, 'Unknown', 1054, 'uploads/book/Bankim Upanyas Samagra (BDeBooks.Com) .pdf', 'uploads/cover/upanyas samagraha.jpg'),
+(223, 'Jhikorgachar Jhonjhat ', 'Shirshendu Mukhopadhyay', 'Ananda Publishers', 2002, 2, 103, 4, 'Unknown', 46, 'uploads/book/Jhikorgachar Jhonjhat by Shirshendu Mukhopadhyay - (BdeBooks.Com).pdf', 'uploads/cover/jhikor gachay jhanjhat.png'),
+(224, 'Mohon Royer Bashi', 'Shirshendu Mukhopadhyay', 'Ananda Publishers', 1992, 2, 103, 4, 'Unknown', 28, 'uploads/book/Mohon_royer_bashi.pdf', 'uploads/cover/mohonrayer bashi.png'),
+(230, 'Kalapahar', 'Samaresh Majumdar', 'Mondal Book House', 1992, 2, 103, 3, 'unknown', 163, 'uploads/book/Kalapahar.pdf', 'uploads/cover/kalapahar.png'),
+(231, 'Abhilash', 'Buddhadeb Guha', 'Unknown', 2015, 2, 103, 4, 'Unknown', 181, 'uploads/book/Abhilash By Buddhadeb Guha (BDeBooks.Com).pdf', 'uploads/cover/abhilash.png'),
+(232, 'Kajogar', 'Buddhadeb Guha', 'Unknown', 1984, 2, 103, 4, 'Unknown', 306, 'uploads/book/Kojagar By Buddhadeb Guha (BDeBooks.Com).pdf', 'uploads/cover/kojagor.png'),
+(233, 'Prothom Komudfull ', 'Achintya Kumar Sengupta', 'Prakash Bhawan', 2000, 2, 103, 4, 'Unknown', 627, 'uploads/book/Prothom Kodomfull By Achintya Kumar Sengupta (bdebooks.com).pdf', 'uploads/cover/prothom kodomer ful.jpg');
 
 -- --------------------------------------------------------
 
@@ -50,6 +66,17 @@ CREATE TABLE `catagories` (
   `cat_id` int(25) NOT NULL,
   `cat_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `catagories`
+--
+
+INSERT INTO `catagories` (`cat_id`, `cat_name`) VALUES
+(101, 'Sports'),
+(102, 'Educational'),
+(103, 'Story/Novels'),
+(104, 'News'),
+(105, 'Poem');
 
 -- --------------------------------------------------------
 
@@ -91,10 +118,9 @@ INSERT INTO `feedback` (`feed_id`, `name`, `email`, `comments`, `feedback_type`)
 (13, 'Kriti Thakur', 'thakurkriti514@gmail.com', 'page is not loading', 'problem'),
 (21, 'Tasneem Khan', 'khan.tasneem017@gmail.com', 'This is a test feedback.', 'suggestion'),
 (22, 'tasneem', 'khan.tasneem@gmail.com', 'hii there', 'praise'),
-(23, '', '', '', ''),
-(24, '', '', '', ''),
-(25, '', '', '', ''),
-(26, 'Kriti Thakur', 'thakurkriti514@gmail.com', 'jhsgajfhgdkfgsdj', 'suggestion');
+(26, 'Kriti Thakur', 'thakurkriti514@gmail.com', 'jhsgajfhgdkfgsdj', 'suggestion'),
+(27, 'tahseen ', 'khantahseen123@gmail.com', 'qwrqweqerw', 'complaint'),
+(28, 'Tahseen Khan', 'khan.tahseen681@gmail.com', 'Thank you.', 'praise');
 
 -- --------------------------------------------------------
 
@@ -106,6 +132,16 @@ CREATE TABLE `sub_catagory` (
   `sub_id` int(25) NOT NULL,
   `sub_name` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `sub_catagory`
+--
+
+INSERT INTO `sub_catagory` (`sub_id`, `sub_name`) VALUES
+(1, 'science'),
+(2, 'literature'),
+(3, 'humanity'),
+(4, 'computer');
 
 -- --------------------------------------------------------
 
@@ -120,31 +156,22 @@ CREATE TABLE `user` (
   `last_name` varchar(20) NOT NULL,
   `phone` varchar(30) NOT NULL,
   `signup_date` datetime NOT NULL DEFAULT current_timestamp(),
-  `email_id` varchar(30) NOT NULL
+  `email_id` varchar(30) NOT NULL,
+  `role` varchar(25) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `user`
 --
 
-INSERT INTO `user` (`user_id`, `password`, `first_name`, `last_name`, `phone`, `signup_date`, `email_id`) VALUES
-(23, 'askjdhflkshdf', 'tasneem', 'khan', '9038681824', '2022-03-28 15:18:53', 'khan.tasneem017@gmail.com'),
-(24, 'asmdfjkshg', 'tasneem', 'khan', '9038681824', '2022-03-28 15:19:11', 'khan.tasneem017@gmail.com'),
-(25, 'Tkhan', 'tasneem', 'khan', '9038681824', '2022-03-28 15:19:30', 'khan.tasneem017@gmail.com'),
-(26, 'ahgshj', 'tasneem', 'khan', '9038681824', '2022-03-28 15:19:58', 'khan.tasneem017@gmail.com'),
-(27, 'tkhan', 'tasneem', 'khan', '9038681824', '2022-03-28 15:20:46', 'khan.tasneem017@gmail.com'),
-(28, '', '', '', '', '2022-04-14 13:05:46', ''),
-(29, '', '', '', '', '2022-04-14 13:12:57', ''),
-(30, '', '', '', '', '2022-04-14 13:15:02', ''),
-(31, 'abcd', 'tasneem', 'khan', '9038681824', '2022-04-14 13:17:31', 'khan.tasneem017@gmail.com'),
-(32, 'xyz', 'tasneem', 'khan', '9038681824', '2022-04-14 13:18:54', 'khan.tasneem017@gmail.com'),
-(33, 'asdf', 'Kriti', 'Thakur', '5242424245', '2022-04-14 13:22:02', 'thakurkriti514@gmail.com'),
-(34, '12345', 'tasneem', 'khan', '9038681824', '2022-04-14 13:22:30', 'khan.tasneem017@gmail.com'),
-(35, 'asdf', 'Kriti', 'Thakur', '5242424245', '2022-04-14 13:23:58', 'thakurkriti514@gmail.com'),
-(36, '1234', 'Sinjita', 'Ghosh', '1231413414', '2022-04-14 13:24:17', 'sinjita11ghosh.sg@gmail.com'),
-(37, '', '', '', '', '2022-04-16 20:47:51', ''),
-(38, '', '', '', '', '2022-04-18 14:18:12', ''),
-(39, '1234', 'Kriti', 'Thakur', '5242424245', '2022-04-18 14:19:50', 'thakurkriti514@gmail.com');
+INSERT INTO `user` (`user_id`, `password`, `first_name`, `last_name`, `phone`, `signup_date`, `email_id`, `role`) VALUES
+(1, 'P@$$w0r5', 'Tasneem', 'Khan', '9038681824', '2022-05-29 13:30:17', 'khan.tasneem017@gmail.com', 'admin'),
+(2, 'asdf123', 'Kriti', 'Thakur', '9330921889', '2022-05-29 13:35:33', 'thakurkriti514@gmail.com', 'admin'),
+(3, 'zxcvbn321', 'Sinjita', 'Ghosh', '9330485962', '2022-05-29 13:35:33', 'sinjita11ghosh@gmail.com', 'admin'),
+(48, 'aeiouaeiouaeiou', 'Tahseen', 'Khan', '8100426158', '2022-05-29 13:40:26', 'khan.tahseen681@gmail.com', 'user'),
+(49, 'zxcvb123', 'Ozair', 'Alam', '1234567890', '2022-05-29 14:09:37', 'ozair@gmail.com', 'user'),
+(50, 'qwerty', 'junaid', 'Alam', '1234567890', '2022-05-29 14:12:06', 'junaid@gmail.com', 'user'),
+(51, 'shabbirshakila', 'Shabbir', 'Alam', '9748774596', '2022-05-29 14:18:18', 'shabbiralam123@gmail.com', 'user');
 
 -- --------------------------------------------------------
 
@@ -166,7 +193,6 @@ CREATE TABLE `user_favourites` (
 --
 ALTER TABLE `books`
   ADD PRIMARY KEY (`book_id`),
-  ADD UNIQUE KEY `isbn` (`isbn`),
   ADD KEY `sub_id` (`sub_id`),
   ADD KEY `cat_id` (`cat_id`);
 
@@ -217,13 +243,13 @@ ALTER TABLE `user_favourites`
 -- AUTO_INCREMENT for table `books`
 --
 ALTER TABLE `books`
-  MODIFY `book_id` int(25) NOT NULL AUTO_INCREMENT;
+  MODIFY `book_id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=237;
 
 --
 -- AUTO_INCREMENT for table `catagories`
 --
 ALTER TABLE `catagories`
-  MODIFY `cat_id` int(25) NOT NULL AUTO_INCREMENT;
+  MODIFY `cat_id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
 
 --
 -- AUTO_INCREMENT for table `comment`
@@ -235,13 +261,13 @@ ALTER TABLE `comment`
 -- AUTO_INCREMENT for table `feedback`
 --
 ALTER TABLE `feedback`
-  MODIFY `feed_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=27;
+  MODIFY `feed_id` int(30) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=40;
+  MODIFY `user_id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=52;
 
 --
 -- Constraints for dumped tables

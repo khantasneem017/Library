@@ -76,7 +76,7 @@
                         }
                     ?>
                     
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <a href="http://localhost/library/library/partials/user_details.php" class="btn btn-primary">View more</a>
                 </div>
             </div>
         </div>
@@ -96,7 +96,7 @@
                         }
                     ?>
                     </dl>
-                    <a href="#" class="btn btn-primary">Go somewhere</a>
+                    <a href="http://localhost/library/library/partials/feedback_list.php" class="btn btn-primary">View More</a>
                 </div>
             </div>
         </div>

@@ -68,7 +68,10 @@
             }
             // Check if file already exists
             if (file_exists($cover_target_file)) {
-                echo "Sorry, file already exists.";
+                echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Error!</strong> File could not upload.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>';
                 $uploadOk = 0;
             }
             
@@ -81,12 +84,14 @@
             // Allow certain file formats
             if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "webp")
              {
-                echo "Sorry, only JPG, JPEG, PNG files are allowed.";
                 $uploadOk = 0;
             }
            // Check if $uploadOk is set to 0 by an error
             if ($uploadOk == 0) {
-                echo "Sorry, your file was not uploaded.";
+                echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Error!</strong> File could not upload.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>';
             // if everything is ok, try to upload file
             } else {
                 if (move_uploaded_file($_FILES["book_cover_file"]["tmp_name"], $cover_target_file)) {

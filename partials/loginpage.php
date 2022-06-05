@@ -57,10 +57,20 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
                             
                         } 
                         else{
-                            echo '';
+                            echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+                            <strong>Error!</strong> Incorrect password.
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                            </div>';
                         }
                     }
                     
+                }
+                else{
+                    
+                    echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+                    <strong>Error!</strong> Wrong Email-id or password.
+                    <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                    </div>';
                 }
             }
         }
@@ -161,7 +171,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
                                 </div>
                             </div>
                             <div class="col-12">
-                                <button type="submit" class="btn btn-primary float-end" id="login" onclick="myFunction()">Login</button>
+                                <button type="submit" class="btn btn-primary float-end" id="login" >Login</button>
                             </div>
                         </form>
                         <hr class="mt-4">
@@ -176,12 +186,8 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
     
     <!-- Bootstrap JS -->
     <script src="https://www.markuptag.com/bootstrap/5/js/bootstrap.bundle.min.js"></script>
-    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
-    <script>
-        function myFunction(){
-            swal("Good job!", "You have logged in!", "Success!!");
-        }
-    </script>
+    
+    
     
 </body>
 </html>

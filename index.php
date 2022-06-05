@@ -152,7 +152,7 @@
                                             <?php if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) : ?>
                                                 <a href="http://localhost/library/library/partials/loginpage.php" class="btn btn-primary">Read</a>
                                             <?php else:?>
-                                                <a href="http://localhost/library/library/partials/read.php" class="btn btn-primary">Read</a>
+                                                <a href=<?php echo "http://localhost/library/library/partials/read.php?id=" . $row["book_id"] ?> class="btn btn-primary">Read</a>
                                             <?php endif; ?>
                                     </div>
                                 </div>
