@@ -1,4 +1,6 @@
-<?php include './partials/connection.php' ?>
+<?php include './partials/connection.php' ;?>
+<?php session_start(); ?>
+
 <!doctype html>
 <html lang="en">
 
@@ -10,7 +12,7 @@
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="stylesheet/style.css">
-    <title>Welcome to Online Library</title>
+    <title>Let's Read</title>
 </head>
 
 <body>
@@ -29,28 +31,25 @@
                     <li class="nav-item">
                         <a class="nav-link" href="partials/about.php">About</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link" href="partials/about.php">Categories</a>
-                    </li>
                     <li class="nav-item">
                         <a class="nav-link" href="partials/feedback.php">Feedback</a>
-                    </li>
+                    </li>   
                 </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn animated-btn" type="submit">Search</button>
+                <form class="d-flex" action='partials/search.php' method='GET' >
+                    <input class="form-control me-2" name='search' type="search" placeholder="Search" aria-label="Search" required="">
+                    <input class="btn animated-btn" value="Search" type="submit">
                 </form>
                 <?php
-                session_start();
-
+                
+                
                 // if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !==true)
                 // {
-                //     // header("location: login.php");
-                // }
-                // else{
-
-                // }
-                ?>
+                    //     // header("location: login.php");
+                    // }
+                    // else{
+                        
+                        // }
+                        ?>
                 <div class="mx-2">
                     <!-- <script scr="js/signup.js"></script> -->
                     <?php if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) : ?>
@@ -59,13 +58,13 @@
                         <button class="btn btn-primary" data-bs-target="#signup" onclick="window.location.href='http://localhost/library/library/partials/signup.php'">
                             SignUp</button>
 
-                    <?php else : ?>
+                        <?php else : ?>
                         <div class="navbar-collapse collapse">
                             <ul class="navbar-nav ml-auto">
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="#">
+                                    <a class="nav-link" href="partials/profile.php">
                                         <img src="assests/icons8-user-50.png">
-                                        <?php echo "Welcome " . $_SESSION['email'] ?></a>
+                                        <?php echo "Welcome " . $_SESSION['name'] ?></a>
                                 </li>
                             </ul>
                             <button class="btn btn-primary" data-bs-target="#login" onclick="window.location.href='http://localhost/library/library/partials/logout.php'">
@@ -93,8 +92,8 @@
                 <div class="carousel-caption d-none d-md-block welcome-note">
                     <h3><strong>Welcome to<br> <em>Let's Read!</em></strong></h3>
                     <p>Read,Learn,Inspire</p>
-                    <button class="btn btn-danger"><a href="#">Books</a></button>
-                    <button class="btn btn-primary"><a href="#">News</a></button>
+                    <a href="#" class="btn btn-danger">Books</a>
+                    <a href="#" class="btn btn-primary">News</a>
 
                 </div>
             </div>
@@ -103,8 +102,8 @@
                 <div class="carousel-caption d-none d-md-block welcome-note">
                     <h3><strong>Welcome to<br> <em>Let's Read!</em></strong></h3>
                     <p>Read,Learn,Inspire</p>
-                    <button class="btn btn-danger">Books</button>
-                    <button class="btn btn-primary">News</button>
+                    <a href="#" class="btn btn-danger">Books</a>
+                    <a href="#" class="btn btn-primary">News</a>
 
                 </div>
             </div>
@@ -113,8 +112,8 @@
                 <div class="carousel-caption d-none d-md-block welcome-note">
                     <h3><strong>Welcome to <br><em>Let's Read!</em></strong></h3>
                     <p>Read,Learn,Inspire</p>
-                    <button class="btn btn-danger">Books</button>
-                    <button class="btn btn-primary">News</button>
+                    <a href="#" class="btn btn-danger">Books</a>
+                    <a href="#" class="btn btn-primary">News</a>
 
                 </div>
             </div>
@@ -144,11 +143,13 @@
                             <div class="card mb-3" style="height: 200px;">
                                 <div class="row">
                                     <div class="col-md-4">
-                                        <img src="<?php echo "partials/".$row['book_cover_url']; ?>" class="img-fluid rounded-start" alt="...">
+                                        <img src="<?php echo "partials/".$row['book_cover_url']; ?>" style="width: 170px;height: 170px;" class="img-fluid rounded-start" alt="...">
                                     </div>
                                     <div class="col-md-8">
                                             <h5 class="card-title"><?php echo $row["book_name"] ?></h5>
                                             <h6 class="card-text text-muted">By <?php echo "<i>".$row['author'] ."</i>";?></h6>
+                                            <h6 class="card-text text-muted">Total Pages: <?php echo $row['total_pages'];?></h6>
+                                            <h6 class="card-text text-muted">Ratings: <?php echo $row['ratings']. "&#11088"?></h6>
                                             <?php if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) : ?>
                                                 <a href="http://localhost/library/library/partials/loginpage.php" class="btn btn-primary">Read</a>
                                             <?php else:?>
@@ -164,6 +165,7 @@
             }
             ?>
         </div>
+    </div>
         <!-- cards end -->
         <footer class="container">
             <p class="float-end"><a href="#">Back to top</a></p>

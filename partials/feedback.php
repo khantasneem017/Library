@@ -1,3 +1,4 @@
+<?php include "connection.php"?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -35,27 +36,13 @@
                     <li class="nav-item">
                         <a class="nav-link" href="about.php">About</a>
                     </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Categories
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="/categories.html">Action</a></li>
-                            <li><a class="dropdown-item" href="/categories.html">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="/categories.html">Something else here</a></li>
-                        </ul>
-                    </li>
                     <li class="nav-item ">
                         <a class="nav-link active" href="feedback.php">Feedback</a>
                     </li>
                 </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn animated-btn" type="submit">Search</button>
+                <form class="d-flex" action='search.php' method='GET' >
+                    <input class="form-control me-2" name='search' type="search" placeholder="Search" aria-label="Search" required="">
+                    <input class="btn animated-btn" value="Search" type="submit">
                 </form>
             </div>
         </div>
