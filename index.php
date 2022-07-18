@@ -29,29 +29,24 @@
                         <a class="nav-link" aria-current="page" href="index.php">Home</a>
                     </li>
                     <li class="nav-item">
+                        <a class="nav-link" href="#books">Books</a>
+                    </li>   
+                    <li class="nav-item">
+                        <a class="nav-link" href="partials/feedback.php">News</a>
+                    </li>   
+                    <li class="nav-item">
                         <a class="nav-link" href="partials/about.php">About</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="partials/feedback.php">Feedback</a>
                     </li>   
+                    
                 </ul>
                 <form class="d-flex" action='partials/search.php' method='GET' >
                     <input class="form-control me-2" name='search' type="search" placeholder="Search" aria-label="Search" required="">
                     <input class="btn animated-btn" value="Search" type="submit">
                 </form>
-                <?php
-                
-                
-                // if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !==true)
-                // {
-                    //     // header("location: login.php");
-                    // }
-                    // else{
-                        
-                        // }
-                        ?>
                 <div class="mx-2">
-                    <!-- <script scr="js/signup.js"></script> -->
                     <?php if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) : ?>
                         <button class="btn btn-primary" data-bs-target="#login" onclick="window.location.href='http://localhost/library/library/partials/loginpage.php'">
                             Login</button>
@@ -92,9 +87,6 @@
                 <div class="carousel-caption d-none d-md-block welcome-note">
                     <h3><strong>Welcome to<br> <em>Let's Read!</em></strong></h3>
                     <p>Read,Learn,Inspire</p>
-                    <a href="#" class="btn btn-danger">Books</a>
-                    <a href="#" class="btn btn-primary">News</a>
-
                 </div>
             </div>
             <div class="carousel-item">
@@ -102,9 +94,6 @@
                 <div class="carousel-caption d-none d-md-block welcome-note">
                     <h3><strong>Welcome to<br> <em>Let's Read!</em></strong></h3>
                     <p>Read,Learn,Inspire</p>
-                    <a href="#" class="btn btn-danger">Books</a>
-                    <a href="#" class="btn btn-primary">News</a>
-
                 </div>
             </div>
             <div class="carousel-item">
@@ -112,9 +101,6 @@
                 <div class="carousel-caption d-none d-md-block welcome-note">
                     <h3><strong>Welcome to <br><em>Let's Read!</em></strong></h3>
                     <p>Read,Learn,Inspire</p>
-                    <a href="#" class="btn btn-danger">Books</a>
-                    <a href="#" class="btn btn-primary">News</a>
-
                 </div>
             </div>
         </div>
@@ -129,11 +115,86 @@
     </div>
 
     <!-- cards -->
-    <div class="container my-4">
+    <div class="container my-4" id="books">
+        <h2>Educational</h2>
         <div class="row mb-2">
-
+            <h3><a style="color:#b87e9a; text-decoration: none;" href='#'>Bengali</a></h3>
             <?php
-            $book_sql = "SELECT * FROM `books`;";
+            $book_sql = "(SELECT * FROM `books` WHERE sub_id=6 ORDER BY book_id DESC LIMIT 3) ORDER BY book_id ASC;";
+            $book_result = mysqli_query($conn, $book_sql);
+            if ($book_result) {
+                if (mysqli_num_rows($book_result)>0) {
+                    while ($row = mysqli_fetch_assoc($book_result)) {
+            ?>
+                        <div class="col-md-4">
+                            <div class="card mb-3" style="height: 200px;">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <img src="<?php echo "partials/".$row['book_cover_url']; ?>" style="width: 170px;height: 170px;" class="img-fluid rounded-start" alt="...">
+                                    </div>
+                                    <div class="col-md-8">
+                                            <h5 class="card-title"><?php echo $row["book_name"] ?></h5>
+                                            <h6 class="card-text text-muted">By <?php echo "<i>".$row['author'] ."</i>";?></h6>
+                                            <h6 class="card-text text-muted">Total Pages: <?php echo $row['total_pages'];?></h6>
+                                            <h6 class="card-text text-muted">Ratings: <?php echo $row['ratings']. "&#11088"?></h6>
+                                            <?php if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) : ?>
+                                                <a href="http://localhost/library/library/partials/loginpage.php" class="btn btn-primary">Read</a>
+                                            <?php else:?>
+                                                <a href=<?php echo "http://localhost/library/library/partials/read.php?id=" . $row["book_id"] ?> class="btn btn-primary">Read</a>
+                                            <?php endif; ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            <?php
+                    }
+                }
+            }
+            ?>
+        </div>
+    </div>
+    <div class="container my-4" >
+        <div class="row mb-2">
+            <h3><a style="color:#b87e9a; text-decoration: none;" href='#'>Humanity</a></h3>
+            <?php
+            $book_sql = "(SELECT * FROM `books` WHERE cat_id=102 ORDER BY book_id DESC LIMIT 3) ORDER BY book_id ASC;";
+            $book_result = mysqli_query($conn, $book_sql);
+            if ($book_result) {
+                if (mysqli_num_rows($book_result)>0) {
+                    while ($row = mysqli_fetch_assoc($book_result)) {
+            ?>
+                        <div class="col-md-4">
+                            <div class="card mb-3" style="height: 200px;">
+                                <div class="row">
+                                    <div class="col-md-4">
+                                        <img src="<?php echo "partials/".$row['book_cover_url']; ?>" style="width: 170px;height: 170px;" class="img-fluid rounded-start" alt="...">
+                                    </div>
+                                    <div class="col-md-8">
+                                            <h5 class="card-title"><?php echo $row["book_name"] ?></h5>
+                                            <h6 class="card-text text-muted">By <?php echo "<i>".$row['author'] ."</i>";?></h6>
+                                            <h6 class="card-text text-muted">Total Pages: <?php echo $row['total_pages'];?></h6>
+                                            <h6 class="card-text text-muted">Ratings: <?php echo $row['ratings']. "&#11088"?></h6>
+                                            <?php if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) : ?>
+                                                <a href="http://localhost/library/library/partials/loginpage.php" class="btn btn-primary">Read</a>
+                                            <?php else:?>
+                                                <a href=<?php echo "http://localhost/library/library/partials/read.php?id=" . $row["book_id"] ?> class="btn btn-primary">Read</a>
+                                            <?php endif; ?>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            <?php
+                    }
+                }
+            }
+            ?>
+        </div>
+    </div>
+    <div class="container my-4" >
+        <div class="row mb-2">
+            <h3><a style="color:#b87e9a; text-decoration: none;" href='#'>Hindi</a></h3>
+            <?php
+            $book_sql = "(SELECT * FROM `books` WHERE sub_id=2 ORDER BY book_id DESC LIMIT 3) ORDER BY book_id ASC;";
             $book_result = mysqli_query($conn, $book_sql);
             if ($book_result) {
                 if (mysqli_num_rows($book_result)>0) {
