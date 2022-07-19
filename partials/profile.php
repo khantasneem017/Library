@@ -11,6 +11,10 @@
 </head>
 <body>
     <h1>Profile</h1>
-    <div class="container"></div>
+    <div class="container">
+        <form action="" method="POST">
+            <button class="btn btn-primary"></button>
+        </form>
+    </div>
 </body>
 </html>
