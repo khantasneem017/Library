@@ -50,14 +50,12 @@
                             Login</button>
                         <button class="btn btn-primary" data-bs-target="#signup" onclick="window.location.href='http://localhost/library/library/partials/signup.php'">
                             SignUp</button>
-
                         <?php else : ?>
                         <div class="navbar-collapse collapse">
                             <ul class="navbar-nav ml-auto">
                                 <li class="nav-item active">
-                                    <a class="nav-link" href="partials/profile.php">
                                         <img src="assests/icons8-user-50.png">
-                                        <?php echo "Welcome " . $_SESSION['name'] ?></a>
+                                        <?php echo "Welcome " . $_SESSION['name'] ?>
                                 </li>
                             </ul>
                             <button class="btn btn-primary" data-bs-target="#login" onclick="window.location.href='http://localhost/library/library/partials/logout.php'">
@@ -119,166 +117,22 @@
     </div>
 
     <!-- cards -->
-    <div class="container my-4" id="books">
-        <h2>Educational</h2>
-        <div class="row mb-2">
-            <h3><a style="color:#b87e9a; text-decoration: none;" href='#'>Bengali</a></h3>
-            <?php
-            $book_sql = "(SELECT * FROM `books` WHERE sub_id=6 ORDER BY book_id DESC LIMIT 3) ORDER BY book_id ASC;";
-            $book_result = mysqli_query($conn, $book_sql);
-            if ($book_result) {
-                if (mysqli_num_rows($book_result)>0) {
-                    while ($row = mysqli_fetch_assoc($book_result)) {
-            ?>
-                        <div class="col-md-4">
-                            <div class="card mb-3" style="height: 200px;">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <img src="<?php echo "partials/".$row['book_cover_url']; ?>" style="width: 170px;height: 170px;" class="img-fluid rounded-start" alt="...">
-                                    </div>
-                                    <div class="col-md-8">
-                                            <h5 class="card-title"><?php echo $row["book_name"] ?></h5>
-                                            <h6 class="card-text text-muted">By <?php echo "<i>".$row['author'] ."</i>";?></h6>
-                                            <h6 class="card-text text-muted">Total Pages: <?php echo $row['total_pages'];?></h6>
-                                            <h6 class="card-text text-muted">Ratings: <?php echo $row['ratings']. "&#11088"?></h6>
-                                            <?php if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) : ?>
-                                                <a href="http://localhost/library/library/partials/loginpage.php" class="btn btn-primary">Read</a>
-                                            <?php else:?>
-                                                <a href=<?php echo "http://localhost/library/library/partials/read.php?id=" . $row["book_id"] ?> class="btn btn-primary">Read</a>
-                                            <?php endif; ?>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-            <?php
-                    }
-                }
-            }
-            ?>
-        </div>
-    </div>
     <div class="container my-4" >
         <div class="row mb-2">
-            <h3><a style="color:#b87e9a; text-decoration: none;" href='#'>Humanity</a></h3>
+            <!-- <h3><a style="color:#b87e9a; text-decoration: none;" href='#'>Humanity</a></h3> -->
             <?php
-            $book_sql = "(SELECT * FROM `books` WHERE sub_id=3 ORDER BY book_id DESC LIMIT 3) ORDER BY book_id ASC;";
+            $book_sql = "SELECT * FROM 
+            ( SELECT book_id,book_name,sub_name,cat_name,author,total_pages,ratings,book_file_url,book_cover_url,ROW_NUMBER() 
+            OVER ( PARTITION BY books.sub_id ORDER BY books.book_id ASC ) 
+            AS ROW_NUMBER FROM `books` JOIN `sub_catagory` ON books.sub_id = sub_catagory.sub_id 
+            JOIN `catagories` ON books.cat_id=catagories.cat_id ) AS groups WHERE groups.ROW_NUMBER <=3;";
             $book_result = mysqli_query($conn, $book_sql);
             if ($book_result) {
                 if (mysqli_num_rows($book_result)>0) {
+                    
                     while ($row = mysqli_fetch_assoc($book_result)) {
-            ?>
-                        <div class="col-md-4">
-                            <div class="card mb-3" style="height: 200px;">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <img src="<?php echo "partials/".$row['book_cover_url']; ?>" style="width: 170px;height: 170px;" class="img-fluid rounded-start" alt="...">
-                                    </div>
-                                    <div class="col-md-8">
-                                            <h5 class="card-title"><?php echo $row["book_name"] ?></h5>
-                                            <h6 class="card-text text-muted">By <?php echo "<i>".$row['author'] ."</i>";?></h6>
-                                            <h6 class="card-text text-muted">Total Pages: <?php echo $row['total_pages'];?></h6>
-                                            <h6 class="card-text text-muted">Ratings: <?php echo $row['ratings']. "&#11088"?></h6>
-                                            <?php if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) : ?>
-                                                <a href="http://localhost/library/library/partials/loginpage.php" class="btn btn-primary">Read</a>
-                                            <?php else:?>
-                                                <a href=<?php echo "http://localhost/library/library/partials/read.php?id=" . $row["book_id"] ?> class="btn btn-primary">Read</a>
-                                            <?php endif; ?>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-            <?php
-                    }
-                }
-            }
-            ?>
-        </div>
-    </div>
-    <div class="container my-4" >
-        <div class="row mb-2">
-            <h3><a style="color:#b87e9a; text-decoration: none;" href='#'>Science</a></h3>
-            <?php
-            $book_sql = "(SELECT * FROM `books` WHERE sub_id=2 ORDER BY book_id DESC LIMIT 3) ORDER BY book_id ASC;";
-            $book_result = mysqli_query($conn, $book_sql);
-            if ($book_result) {
-                if (mysqli_num_rows($book_result)>0) {
-                    while ($row = mysqli_fetch_assoc($book_result)) {
-            ?>
-                        <div class="col-md-4">
-                            <div class="card mb-3" style="height: 200px;">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <img src="<?php echo "partials/".$row['book_cover_url']; ?>" style="width: 170px;height: 170px;" class="img-fluid rounded-start" alt="...">
-                                    </div>
-                                    <div class="col-md-8">
-                                            <h5 class="card-title"><?php echo $row["book_name"] ?></h5>
-                                            <h6 class="card-text text-muted">By <?php echo "<i>".$row['author'] ."</i>";?></h6>
-                                            <h6 class="card-text text-muted">Total Pages: <?php echo $row['total_pages'];?></h6>
-                                            <h6 class="card-text text-muted">Ratings: <?php echo $row['ratings']. "&#11088"?></h6>
-                                            <?php if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) : ?>
-                                                <a href="http://localhost/library/library/partials/loginpage.php" class="btn btn-primary">Read</a>
-                                            <?php else:?>
-                                                <a href=<?php echo "http://localhost/library/library/partials/read.php?id=" . $row["book_id"] ?> class="btn btn-primary">Read</a>
-                                            <?php endif; ?>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-            <?php
-                    }
-                }
-            }
-            ?>
-        </div>
-    </div>
-    <div class="container my-4" >
-        <div class="row mb-2">
-            <h3><a style="color:#b87e9a; text-decoration: none;" href='#'>Hindi</a></h3>
-            <?php
-            $book_sql = "(SELECT * FROM `books` WHERE sub_id=2 ORDER BY book_id DESC LIMIT 3) ORDER BY book_id ASC;";
-            $book_result = mysqli_query($conn, $book_sql);
-            if ($book_result) {
-                if (mysqli_num_rows($book_result)>0) {
-                    while ($row = mysqli_fetch_assoc($book_result)) {
-            ?>
-                        <div class="col-md-4">
-                            <div class="card mb-3" style="height: 200px;">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <img src="<?php echo "partials/".$row['book_cover_url']; ?>" style="width: 170px;height: 170px;" class="img-fluid rounded-start" alt="...">
-                                    </div>
-                                    <div class="col-md-8">
-                                            <h5 class="card-title"><?php echo $row["book_name"] ?></h5>
-                                            <h6 class="card-text text-muted">By <?php echo "<i>".$row['author'] ."</i>";?></h6>
-                                            <h6 class="card-text text-muted">Total Pages: <?php echo $row['total_pages'];?></h6>
-                                            <h6 class="card-text text-muted">Ratings: <?php echo $row['ratings']. "&#11088"?></h6>
-                                            <?php if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) : ?>
-                                                <a href="http://localhost/library/library/partials/loginpage.php" class="btn btn-primary">Read</a>
-                                            <?php else:?>
-                                                <a href=<?php echo "http://localhost/library/library/partials/read.php?id=" . $row["book_id"] ?> class="btn btn-primary">Read</a>
-                                            <?php endif; ?>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-            <?php
-                    }
-                }
-            }
-            ?>
-        </div>
-    </div>
-    <div class="container my-4" >
-            <h2>Story books</h2>
-            <div class="row mb-2">
-            <h3><a style="color:#b87e9a; text-decoration: none;" href='#'>Science</a></h3>
-            <?php
-            $book_sql = "(SELECT * FROM `books` WHERE cat_id=103 && sub_id=5 ORDER BY book_id DESC LIMIT 3) ORDER BY book_id ASC;";
-            $book_result = mysqli_query($conn, $book_sql);
-            if ($book_result) {
-                if (mysqli_num_rows($book_result)>0) {
-                    while ($row = mysqli_fetch_assoc($book_result)) {
-            ?>
+                        ?>
+                        
                         <div class="col-md-4">
                             <div class="card mb-3" style="height: 200px;">
                                 <div class="row">
