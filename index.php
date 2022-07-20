@@ -31,9 +31,7 @@
                     <li class="nav-item">
                         <a class="nav-link" href="#books">Books</a>
                     </li>   
-                    <li class="nav-item">
-                        <a class="nav-link" href="partials/feedback.php">News</a>
-                    </li>   
+                    
                     <li class="nav-item">
                         <a class="nav-link" href="partials/about.php">About</a>
                     </li>
@@ -83,24 +81,30 @@
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="assests/1.jpg" class="d-block w-100" alt="...">
+                <img src="assets/1.jpg" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block welcome-note">
                     <h3><strong>Welcome to<br> <em>Let's Read!</em></strong></h3>
-                    <p>Read,Learn,Inspire</p>
+                    <button class="btn btn-danger">Books</button>
+                    <button class="btn btn-success"
+                        onclick="window.location.href='http:/library/library/news/news.html'">News</button>
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="assests/3.jpg" class="d-block w-100" alt="...">
+                <img src="assets/3.jpg" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block welcome-note">
                     <h3><strong>Welcome to<br> <em>Let's Read!</em></strong></h3>
-                    <p>Read,Learn,Inspire</p>
+                    <button class="btn btn-danger">Books</button>
+                    <button class="btn btn-success"
+                        onclick="window.location.href='http:/library/library/news/news.html'">News</button>
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="assests/2.jpg" class="d-block w-100 " alt="...">
+                <img src="assets/2.jpg" class="d-block w-100 " alt="...">
                 <div class="carousel-caption d-none d-md-block welcome-note">
                     <h3><strong>Welcome to <br><em>Let's Read!</em></strong></h3>
-                    <p>Read,Learn,Inspire</p>
+                    <button class="btn btn-danger">Books</button>
+                    <button class="btn btn-success"
+                        onclick="window.location.href='http:/library/library/news/news.html'">News</button>
                 </div>
             </div>
         </div>
