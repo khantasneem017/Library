@@ -9,6 +9,15 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    <!-- added -->
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Allura&display=swap" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/assets/owl.carousel.min.css" rel="stylesheet">
+    <!-- added -->
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+
     <!-- Bootstrap CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
     <link rel="stylesheet" href="stylesheet/style.css">
@@ -163,8 +172,9 @@
         </div>
     </div>
         <!-- cards end -->
-    <!-- testimonials -->
-    <section class="testimonial">
+
+     <!-- testimonials -->
+     <section class="testimonial">
         <div class="container">
             <div class="row">
                 <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
@@ -215,14 +225,100 @@
                             </section> 
                         </div>
                     </div>
-                <!-- end testimonial -->
+                    <div class="single-box">
+                        <div class="img-area"><img alt="" class="img-fluid"
+                                src="https://images.pexels.com/photos/3211476/pexels-photo-3211476.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+                        </div>
+                        <div class="content">
+                            <h4>Matt Demon</h4>
+                            <h6>Teacher,Cambridge University</h6>
+                            <p>"I found the ebooks i was searching for and would recommend to my students as well."</p>
+                             <section class="rating-star">
+                                 <div class="icons">
+                                     <i class="fa fa-star"></i>
+                                     <i class="fa fa-star"></i>
+                                     <i class="fa fa-star"></i>
+                                     <i class="fa fa-star"></i>
+                                    </div>
+                            </section> 
+                        </div>
+                    </div>
+                    <div class="single-box">
+                        <div class="img-area"><img alt="" class="img-fluid"
+                                src="https://images.pexels.com/photos/1270076/pexels-photo-1270076.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+                        </div>
+                        <div class="content">
+                            <!-- <span class="rating-star"><i class="icofont-star"></i><i class="icofont-star"></i><i
+                                    class="icofont-star"></i><i class="icofont-star"></i><i
+                                    class="icofont-star"></i></span> -->
+                                <h4>jimmy kimmel</h4>
+                                <h6>Professor,Massachusets Institute of Technology</h6>
+                                <p>"Good resources!"</p>
+                                <section class="rating-star">
+                                 <div class="icons">
+                                     <i class="fa fa-star"></i>
+                                     <i class="fa fa-star"></i>
+                                     <i class="fa fa-star"></i>
+                                     <i class="fa fa-star"></i>
+                                     <i class="fa-solid fa-star-half-stroke"></i>
+                                    </div>
+                            </section> 
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.2.1/owl.carousel.min.js">
+    </script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js">
+    </script>
+    <script>
+    $('.clients-carousel').owlCarousel({
+        loop: true,
+        nav: false,
+        autoplay: true,
+        autoplayTimeout: 5000,
+        animateOut: 'fadeOut',
+        animateIn: 'fadeIn',
+        smartSpeed: 450,
+        margin: 30,
+        responsive: {
+            0: {
+                items: 1
+            },
+            768: {
+                items: 2
+            },
+            991: {
+                items: 2
+            },
+            1200: {
+                items: 2
+            },
+            1920: {
+                items: 2
+            }
+        }
+    });
+    </script>
 
+    <footer class="container">
+        <p class="float-end"><a href="#">Back to top</a></p>
+        <p>© 2022–2023 Let's Read, Inc. · <a href="#">Privacy</a> · <a href="#">Terms</a></p>
+    </footer>
+    <section class="foot">
+        <div class="icons">
+            <i class="fa fa-facebook"></i>
+            <i class="fa fa-instagram"></i>
+            <i class="fa fa-twitter"></i>
+            <i class="fa fa-linkedin"></i>
+        </div>
+    </section>
 
-        <footer class="container">
-            <p class="float-end"><a href="#">Back to top</a></p>
-            <p>© 2022 Let's Read, Inc. · <a href="#">Privacy</a> · <a href="#">Terms</a></p>
-        </footer>
-
+    
 
         <!-- Optional JavaScript; choose one of the two! -->
 
@@ -231,10 +327,10 @@
         </script>
 
         <!-- Option 2: Separate Popper and Bootstrap JS -->
-        <!--
+        
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.10.2/dist/umd/popper.min.js" integrity="sha384-7+zCNj/IqJ95wo16oMtfsKbZ9ccEh31eOz1HGyDuCQ6wgnyJNSYdrPa03rtR1zdB" crossorigin="anonymous"></script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.min.js" integrity="sha384-QJHtvGhmr9XOIpI6YVutG+2QOK9T+ZnN4kzFN1RtK3zEFEIsxhlmWl5/YESvpZ13" crossorigin="anonymous"></script>
-    -->
+   
 </body>
 
 </html>
