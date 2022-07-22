@@ -28,12 +28,9 @@
                     <li class="nav-item">
                         <a class="nav-link" aria-current="page" href="index.php">Home</a>
                     </li>
+                               
                     <li class="nav-item">
-                        <a class="nav-link" href="#books">Books</a>
-                    </li>   
-                    
-                    <li class="nav-item">
-                        <a class="nav-link" href="partials/about.php">About</a>
+                        <a class="nav-link" href="partials/about.html">About</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="partials/feedback.php">Feedback</a>
@@ -80,16 +77,16 @@
         <div class="carousel-inner">
             <div class="carousel-item active">
                 <img src="assets/1.jpg" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block welcome-note">
+                <div class="carousel-caption d-none d-md-block ">
                     <h3><strong>Welcome to<br> <em>Let's Read!</em></strong></h3>
-                    <button class="btn btn-danger">Books</button>
+                    <a class="btn btn-danger" href='#books'>Books</a>
                     <button class="btn btn-success"
                         onclick="window.location.href='http:/library/library/news/news.html'">News</button>
                 </div>
             </div>
             <div class="carousel-item">
                 <img src="assets/3.jpg" class="d-block w-100" alt="...">
-                <div class="carousel-caption d-none d-md-block welcome-note">
+                <div class="carousel-caption d-none d-md-block ">
                     <h3><strong>Welcome to<br> <em>Let's Read!</em></strong></h3>
                     <button class="btn btn-danger">Books</button>
                     <button class="btn btn-success"
@@ -98,7 +95,7 @@
             </div>
             <div class="carousel-item">
                 <img src="assets/2.jpg" class="d-block w-100 " alt="...">
-                <div class="carousel-caption d-none d-md-block welcome-note">
+                <div class="carousel-caption d-none d-md-block ">
                     <h3><strong>Welcome to <br><em>Let's Read!</em></strong></h3>
                     <button class="btn btn-danger">Books</button>
                     <button class="btn btn-success"
@@ -115,22 +112,27 @@
             <span class="visually-hidden">Next</span>
         </button>
     </div>
-
+    
+    <!-- <h3><a style="color:#b87e9a; text-decoration: none;" href='#'>Humanity</a></h3> -->
     <!-- cards -->
-    <div class="container my-4" >
+    <div class="container my-4" id='books'>
         <div class="row mb-2">
-            <!-- <h3><a style="color:#b87e9a; text-decoration: none;" href='#'>Humanity</a></h3> -->
-            <?php
+    <?php
+            if(isset($_GET['sub_name'])){
+                $cat_name=$_GET['sub_name'];
+            }
             $book_sql = "SELECT * FROM 
             ( SELECT book_id,book_name,sub_name,cat_name,author,total_pages,ratings,book_file_url,book_cover_url,ROW_NUMBER() 
             OVER ( PARTITION BY books.sub_id ORDER BY books.book_id ASC ) 
             AS ROW_NUMBER FROM `books` JOIN `sub_catagory` ON books.sub_id = sub_catagory.sub_id 
             JOIN `catagories` ON books.cat_id=catagories.cat_id ) AS groups WHERE groups.ROW_NUMBER <=3;";
             $book_result = mysqli_query($conn, $book_sql);
-            if ($book_result) {
+             if ($book_result) {
                 if (mysqli_num_rows($book_result)>0) {
-                    
                     while ($row = mysqli_fetch_assoc($book_result)) {
+                        if($row['ROW_NUMBER']==1){
+                            echo "<h3><a style='color:#75485E; text-decoration: none;' href='partials/catagories.php?sub_name={$row['sub_name']}'>" . $row['sub_name'] . "</a></h3>";
+                        }
                         ?>
                         
                         <div class="col-md-4">
@@ -161,6 +163,61 @@
         </div>
     </div>
         <!-- cards end -->
+    <!-- testimonials -->
+    <section class="testimonial">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 offset-lg-2 col-md-10 offset-md-1">
+                    <div class="sec-heading text-center">
+                        <h6>" Client's Says "</h6>
+                    </div>
+                </div>
+            </div>
+            <div class="row">
+                <div class="clients-carousel owl-carousel">
+                    <div class="single-box">
+                        <div class="img-area"><img alt="" class="img-fluid"
+                                src="https://images.pexels.com/photos/3525908/pexels-photo-3525908.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+                        </div>
+                        <div class="content">
+                            <h4>Jason Doe</h4>
+                            <h7>Researcher,University of California</h7>
+
+                            <p>"I have found this library to be very useful.Thankyou!"</p>
+                            <section class="rating-star">
+                                 <div class="icons">
+                                     <i class="fa fa-star"></i>
+                                     <i class="fa fa-star"></i>
+                                     <i class="fa fa-star"></i>
+                                     <i class="fa fa-star"></i>
+                                     <i class="fa-solid fa-star-sharp-half"></i>
+
+                                    </div>
+                            </section> 
+                        </div>
+                    </div>
+                    <div class="single-box">
+                        <div class="img-area"><img alt="" class="img-fluid"
+                                src="https://images.pexels.com/photos/5042302/pexels-photo-5042302.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
+                        </div>
+                        <div class="content">
+                            <h4>Dave Wood</h4>
+                            <h6>Student,Stanford University</h6>
+                            <p>"This library has been quite useful for me.I found a wide range of contents here."</p>
+                            <section class="rating-star">
+                                 <div class="icons">
+                                     <i class="fa fa-star"></i>
+                                     <i class="fa fa-star"></i>
+                                     <i class="fa fa-star"></i>
+                                     <i class="fa fa-star-o"></i>
+
+                                    </div>
+                            </section> 
+                        </div>
+                    </div>
+                <!-- end testimonial -->
+
+
         <footer class="container">
             <p class="float-end"><a href="#">Back to top</a></p>
             <p>© 2022 Let's Read, Inc. · <a href="#">Privacy</a> · <a href="#">Terms</a></p>

@@ -71,7 +71,7 @@
         </div>
     </nav>
                         <!-- searching -->
-    <h2 align='center'><b>Search Results</b></h2>
+    <h2 class= 'text-center display-6' style="color:#75485E;"><b>Search Results</b></h2>
 <?php
 
 if(isset($_GET["search"])){
@@ -123,7 +123,7 @@ if(isset($_GET["search"])){
                 }
             }
     else{
-        echo "<h1> No results found for <b>". $str. "</b>";
+        echo "<h3 class= 'text-center' style='color:#75485E; text-decoration:underline;'> No results found for <b>". $str. "</b></h3>";
     }
            
             
