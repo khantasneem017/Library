@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Jul 22, 2022 at 10:54 AM
+-- Generation Time: Jul 22, 2022 at 10:57 AM
 -- Server version: 10.4.22-MariaDB
 -- PHP Version: 7.4.27
 
@@ -95,19 +95,6 @@ INSERT INTO `catagories` (`cat_id`, `cat_name`) VALUES
 -- --------------------------------------------------------
 
 --
--- Table structure for table `comment`
---
-
-CREATE TABLE `comment` (
-  `comment_id` int(25) NOT NULL,
-  `user_id` int(25) NOT NULL,
-  `book_id` int(25) NOT NULL,
-  `comment_date` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
--- --------------------------------------------------------
-
---
 -- Table structure for table `feedback`
 --
 
@@ -189,17 +176,6 @@ INSERT INTO `user` (`user_id`, `password`, `first_name`, `last_name`, `phone`, `
 (50, 'qwerty', 'junaid', 'Alam', '1234567890', '2022-05-29 14:12:06', 'junaid@gmail.com', 'user'),
 (51, 'shabbirshakila', 'Shabbir', 'Alam', '9748774596', '2022-05-29 14:18:18', 'shabbiralam123@gmail.com', 'user');
 
--- --------------------------------------------------------
-
---
--- Table structure for table `user_favourites`
---
-
-CREATE TABLE `user_favourites` (
-  `user_id` int(25) NOT NULL,
-  `book_id` int(25) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
-
 --
 -- Indexes for dumped tables
 --
@@ -217,14 +193,6 @@ ALTER TABLE `books`
 --
 ALTER TABLE `catagories`
   ADD PRIMARY KEY (`cat_id`);
-
---
--- Indexes for table `comment`
---
-ALTER TABLE `comment`
-  ADD PRIMARY KEY (`comment_id`),
-  ADD KEY `user_id` (`user_id`),
-  ADD KEY `book_id` (`book_id`);
 
 --
 -- Indexes for table `feedback`
@@ -245,13 +213,6 @@ ALTER TABLE `user`
   ADD PRIMARY KEY (`user_id`);
 
 --
--- Indexes for table `user_favourites`
---
-ALTER TABLE `user_favourites`
-  ADD KEY `BOOK_ID_FK` (`book_id`),
-  ADD KEY `USER_ID_FK` (`user_id`);
-
---
 -- AUTO_INCREMENT for dumped tables
 --
 
@@ -266,12 +227,6 @@ ALTER TABLE `books`
 --
 ALTER TABLE `catagories`
   MODIFY `cat_id` int(25) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=107;
-
---
--- AUTO_INCREMENT for table `comment`
---
-ALTER TABLE `comment`
-  MODIFY `comment_id` int(25) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `feedback`
@@ -295,20 +250,6 @@ ALTER TABLE `user`
 ALTER TABLE `books`
   ADD CONSTRAINT `cat_id` FOREIGN KEY (`cat_id`) REFERENCES `catagories` (`cat_id`),
   ADD CONSTRAINT `sub_id` FOREIGN KEY (`sub_id`) REFERENCES `sub_catagory` (`sub_id`);
-
---
--- Constraints for table `comment`
---
-ALTER TABLE `comment`
-  ADD CONSTRAINT `book_id` FOREIGN KEY (`book_id`) REFERENCES `books` (`book_id`),
-  ADD CONSTRAINT `user_id` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
-
---
--- Constraints for table `user_favourites`
---
-ALTER TABLE `user_favourites`
-  ADD CONSTRAINT `BOOK_ID_FK` FOREIGN KEY (`book_id`) REFERENCES `books` (`book_id`),
-  ADD CONSTRAINT `USER_ID_FK` FOREIGN KEY (`user_id`) REFERENCES `user` (`user_id`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
