@@ -31,29 +31,15 @@
                         <a class="nav-link" aria-current="page" href="../index.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="about.php">About</a>
-                    </li>
-                    <li class="nav-item dropdown">
-                        <a class="nav-link dropdown-toggle " href="#" id="navbarDropdown" role="button"
-                            data-bs-toggle="dropdown" aria-expanded="false">
-                            Categories
-                        </a>
-                        <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                            <li><a class="dropdown-item" href="/categories.html">Action</a></li>
-                            <li><a class="dropdown-item" href="/categories.html">Another action</a></li>
-                            <li>
-                                <hr class="dropdown-divider">
-                            </li>
-                            <li><a class="dropdown-item" href="/categories.html">Something else here</a></li>
-                        </ul>
+                        <a class="nav-link" href="about.html">About</a>
                     </li>
                     <li class="nav-item ">
-                        <a class="nav-link" href="feedbackform.php">Feedback</a>
+                        <a class="nav-link" href="feedback.php">Feedback</a>
                     </li>
                 </ul>
-                <form class="d-flex">
-                    <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
-                    <button class="btn animated-btn" type="submit">Search</button>
+                <form class="d-flex" action='search.php' method='GET' >
+                    <input class="form-control me-2" name='search' type="search" placeholder="Search" aria-label="Search" required="">
+                    <input class="btn animated-btn" value="Search" type="submit">
                 </form>
             </div>
         </div>
@@ -139,28 +125,6 @@
                 }
                 mysqli_stmt_close($stmt);
             }
-        
-            // $email=$_POST['email-id'];
-            // $pass=$_POST['password'];  
-            // $conpass=$_POST['cpassword'];
-            // $result=mysqli_query($conn,$sql);
-            
-            // if($pass==$conpass){
-        
-            //     if($result){
-            //         echo 'successful';
-            //     }
-            //     else{
-            //         echo "The record was not successfully inserted";
-            //     }
-            // }
-            // else{
-        
-            //     echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
-            //     <strong>Error!</strong> Password does not match.
-            //     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            //     </div>';
-            // }
             mysqli_close($conn);
         }
       

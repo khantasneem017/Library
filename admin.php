@@ -44,7 +44,7 @@
             <h5 class="card-title">Books that are available.</h5>
             <ul>
                 <?php 
-                    $sql= "(SELECT * FROM books ORDER BY book_id DESC LIMIT 8) ORDER BY book_id ASC;";
+                    $sql= "SELECT * FROM `books`;";
                         $result = mysqli_query($conn,$sql);
                         if(mysqli_num_rows($result) > 0){
         

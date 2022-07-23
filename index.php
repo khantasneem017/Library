@@ -59,8 +59,8 @@
                         <?php else : ?>
                         <div class="navbar-collapse collapse">
                             <ul class="navbar-nav ml-auto">
-                                <li class="nav-item active">
-                                        <img src="assests/icons8-user-50.png">
+                                <li class="nav-item active" style="color: #D0B3C2;">
+                                        <img src="assets/icons8-user-50.png">
                                         <?php echo "Welcome " . $_SESSION['name'] ?>
                                 </li>
                             </ul>
@@ -140,7 +140,7 @@
                 if (mysqli_num_rows($book_result)>0) {
                     while ($row = mysqli_fetch_assoc($book_result)) {
                         if($row['ROW_NUMBER']==1){
-                            echo "<h3><a style='color:#75485E; text-decoration: none;' href='partials/catagories.php?sub_name={$row['sub_name']}'>" . $row['sub_name'] . "</a></h3>";
+                            echo "<h3><a style='color:#75485E; text-decoration: none;' href='partials/catagories.php?sub_name={$row["sub_name"]}'>" . $row['sub_name'] . "</a></h3>";
                         }
                         ?>
                         

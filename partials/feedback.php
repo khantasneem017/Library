@@ -11,10 +11,7 @@
     <title>Feedback Form</title>
 </head>
 <body>
-   
-
-    <!-- Optional JavaScript; choose one of the two! -->
-
+ 
     <!-- Option 1: Bootstrap Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
@@ -22,7 +19,7 @@
      <!-- Nav bar -->
      <nav class="navbar navbar-expand-lg navbar-dark bglavender">
         <div class="container-fluid">
-            <a class="navbar-brand" href="../index.php">Let's Read</a>
+            <a class="navbar-brand page-name" href="../index.php">Let's Read</a>
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
                 data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false"
                 aria-label="Toggle navigation">
@@ -34,7 +31,7 @@
                         <a class="nav-link" aria-current="page" href="../index.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="about.php">About</a>
+                        <a class="nav-link" href="about.html">About</a>
                     </li>
                     <li class="nav-item ">
                         <a class="nav-link active" href="feedback.php">Feedback</a>

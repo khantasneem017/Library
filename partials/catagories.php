@@ -61,35 +61,49 @@
                             </ul>
                             <button class="btn btn-primary" data-bs-target="#login" onclick="window.location.href='http://localhost/library/library/partials/logout.php'">
                                 Logout</button>
+                            </div>
+                            <?php endif; ?>
                         </div>
-                    <?php endif; ?>
+                    </div>
                 </div>
-            </div>
-        </div>
-    </nav>
-    <!-- cards -->
+            </nav>
     <div class="container my-4">
-            <div class="row mb-2">
-                <div class="col-md-12">
-<?php
+        
+        <div class="row mb-2">
+            <div class="col-md-12">
+                <?php
     if(isset($_GET['sub_name'])){
         $sub_name=$_GET['sub_name'];
     }
+    echo '<h2 class= "text-center display-6" style="color:#75485E;"><b>'. $sub_name . ' </b></h2>';
+    // echo $sub_name;
     $cat_query = "SELECT * FROM `books` JOIN `sub_catagory` ON 
     books.sub_id = sub_catagory.sub_id 
-    WHERE sub_catagory.sub_name = {$sub_name};";
+    WHERE sub_catagory.sub_name = '{$sub_name}';";
+    // echo $cat_query;
     $cat_result=mysqli_query($conn,$cat_query);
-    if(mysqli_num_rows($cat_result)>0){
-    
+    if($cat_result){
+        
+        if(mysqli_num_rows($cat_result)>0){
+            
             while($row=mysqli_fetch_assoc($cat_result)){
         ?>
-                    <div class="card">
+        <!-- cards -->
+                    <div class="card mb" style="height: 215px;">
                         <div class="row">
                             <div class="col-md-2">
                                 <img src="<?php echo "../partials/".$row['book_cover_url']; ?>" style="width: 170px;height: 190px; " class="img-fluid rounded-start" alt="...">
                             </div>
                             <div class="col-md-10">
                                 <h5 class="card-title"><?php echo $row["book_name"] ?></h5>
+                                <h6 class="card-text text-muted">By <?php echo "<i>".$row['author'] ."</i>";?></h6>
+                                <h6 class="card-text text-muted">Total Pages: <?php echo $row['total_pages'];?></h6>
+                                <h6 class="card-text text-muted">Ratings: <?php echo $row['ratings']. "&#11088"?></h6>
+                                <?php if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) : ?>
+                                    <a href="http://localhost/library/library/partials/loginpage.php" class="btn btn-primary">Read</a>
+                                <?php else:?>
+                                    <a href=<?php echo "http://localhost/library/library/partials/read.php?id=" . $row["book_id"] ?> class="btn btn-primary">Read</a>
+                                <?php endif; ?>
                             </div>
                         </div>
 
@@ -98,7 +112,7 @@
     <?php
             }
         }
- 
+    }
 ?>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
     </script>
