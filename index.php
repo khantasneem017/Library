@@ -85,7 +85,7 @@
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="assets/1.jpg" class="d-block w-100" alt="...">
+                <img src="assets/caro1.jpg" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block ">
                     <h3><strong>Welcome to<br> <em>Let's Read!</em></strong></h3>
                     <a class="btn btn-danger" href='#books'>Books</a>
@@ -94,7 +94,7 @@
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="assets/3.jpg" class="d-block w-100" alt="...">
+                <img src="assets/caro2.jpg" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block ">
                     <h3><strong>Welcome to<br> <em>Let's Read!</em></strong></h3>
                     <button class="btn btn-danger">Books</button>
@@ -103,7 +103,7 @@
                 </div>
             </div>
             <div class="carousel-item">
-                <img src="assets/2.jpg" class="d-block w-100 " alt="...">
+                <img src="assets/caro3.jpg" class="d-block w-100 " alt="...">
                 <div class="carousel-caption d-none d-md-block ">
                     <h3><strong>Welcome to <br><em>Let's Read!</em></strong></h3>
                     <button class="btn btn-danger">Books</button>
