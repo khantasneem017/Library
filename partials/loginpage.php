@@ -157,7 +157,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
                         </form>
                         <hr class="mt-4">
                         <div class="col-12">
-                            <p class="text-center mb-0">Have not account yet? <a href="/signup.php">Signup</a></p>
+                            <p class="text-center mb-0">Don't have an account yet? <a href="/signup.php">Signup</a></p>
                         </div>
                     </div>
                 </div>
