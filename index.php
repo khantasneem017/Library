@@ -61,7 +61,7 @@
                             <ul class="navbar-nav ml-auto">
                                 <li class="nav-item active" style="color: #D0B3C2;">
                                         <img src="assets/icons8-user-50.png">
-                                        <?php echo "Welcome " . $_SESSION['name'] ?>
+                                        <b style="color:white;"><?php echo "Welcome " . $_SESSION['name'] ?></b>
                                 </li>
                             </ul>
                             <button class="btn btn-primary" data-bs-target="#login" onclick="window.location.href='http://localhost/library/library/partials/logout.php'">

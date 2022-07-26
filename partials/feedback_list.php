@@ -14,7 +14,7 @@
 </head>
 
 <body>
-    <h1>User Comments</h1>
+    <h1 class= 'text-center display-3' style="color:#75485E;">User Comments</h1>
     <table class="table table-striped">
         <tr>
             <th>Name</th>

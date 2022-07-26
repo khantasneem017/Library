@@ -67,7 +67,7 @@ em{
 /* user table design */
 .table-striped>tbody>tr:nth-child(odd)>td, 
 .table-striped>tbody>tr:nth-child(odd)>th {
-   background-color: #b87e9a !important; 
+   background-color: #f9e0ec76 !important; 
 }
  /* table design end */
 /* footer icons */
