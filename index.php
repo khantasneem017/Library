@@ -85,7 +85,7 @@
         </div>
         <div class="carousel-inner">
             <div class="carousel-item active">
-                <img src="assets/caro1.jpg" class="d-block w-100" alt="...">
+                <img src="assets/caroo1.jpg" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block ">
                     <h3><strong>Welcome to<br> <em>Let's Read!</em></strong></h3>
                     <a class="btn btn-danger" href='#books'>Books</a>
