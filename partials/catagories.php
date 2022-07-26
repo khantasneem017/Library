@@ -1,4 +1,4 @@
-<?php include "connection.php";?>
+<?php include "connection.php"; ?>
 <?php session_start(); ?>
 
 <!doctype html>
@@ -16,7 +16,7 @@
 </head>
 
 <body>
-    
+
     <!-- nav bar -->
     <nav class="navbar navbar-expand-lg navbar-dark bglavender">
         <div class="container-fluid">
@@ -27,21 +27,17 @@
             <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                     <li class="nav-item">
-                        <a class="nav-link" aria-current="page" href="index.php">Home</a>
+                        <a class="nav-link" aria-current="page" href="../index.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#books">Books</a>
-                    </li>   
-                    
-                    <li class="nav-item">
-                        <a class="nav-link" href="partials/about.php">About</a>
+                        <a class="nav-link" href="about.html">About</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="partials/feedback.php">Feedback</a>
-                    </li>   
-                    
+                        <a class="nav-link" href="feedback.php">Feedback</a>
+                    </li>
+
                 </ul>
-                <form class="d-flex" action='partials/search.php' method='GET' >
+                <form class="d-flex" action='search.php' method='GET'>
                     <input class="form-control me-2" name='search' type="search" placeholder="Search" aria-label="Search" required="">
                     <input class="btn animated-btn" value="Search" type="submit">
                 </form>
@@ -51,70 +47,71 @@
                             Login</button>
                         <button class="btn btn-primary" data-bs-target="#signup" onclick="window.location.href='http://localhost/library/library/partials/signup.php'">
                             SignUp</button>
-                        <?php else : ?>
+                    <?php else : ?>
                         <div class="navbar-collapse collapse">
                             <ul class="navbar-nav ml-auto">
                                 <li class="nav-item active">
-                                        <img src="assests/icons8-user-50.png">
-                                        <?php echo "Welcome " . $_SESSION['name'] ?>
+                                    <img src="assests/icons8-user-50.png">
+                                    <?php echo "Welcome " . $_SESSION['name'] ?>
                                 </li>
                             </ul>
                             <button class="btn btn-primary" data-bs-target="#login" onclick="window.location.href='http://localhost/library/library/partials/logout.php'">
                                 Logout</button>
-                            </div>
-                            <?php endif; ?>
                         </div>
-                    </div>
+                    <?php endif; ?>
                 </div>
-            </nav>
+            </div>
+        </div>
+    </nav>
     <div class="container my-4">
-        
+
         <div class="row mb-2">
             <div class="col-md-12">
                 <?php
-    if(isset($_GET['sub_name'])){
-        $sub_name=$_GET['sub_name'];
-    }
-    echo '<h2 class= "text-center display-6" style="color:#75485E;"><b>'. $sub_name . ' </b></h2>';
-    // echo $sub_name;
-    $cat_query = "SELECT * FROM `books` JOIN `sub_catagory` ON 
+                if (isset($_GET['sub_name'])) {
+                    $sub_name = $_GET['sub_name'];
+                }
+                echo '<h2 class= "text-center display-6" style="color:#75485E;"><b>' . $sub_name . ' </b></h2>';
+                // echo $sub_name;
+                $cat_query = "SELECT * FROM `books` JOIN `sub_catagory` ON 
     books.sub_id = sub_catagory.sub_id 
     WHERE sub_catagory.sub_name = '{$sub_name}';";
-    // echo $cat_query;
-    $cat_result=mysqli_query($conn,$cat_query);
-    if($cat_result){
-        
-        if(mysqli_num_rows($cat_result)>0){
-            
-            while($row=mysqli_fetch_assoc($cat_result)){
-        ?>
-        <!-- cards -->
-                    <div class="card mb" style="height: 215px;">
-                        <div class="row">
-                            <div class="col-md-2">
-                                <img src="<?php echo "../partials/".$row['book_cover_url']; ?>" style="width: 170px;height: 190px; " class="img-fluid rounded-start" alt="...">
-                            </div>
-                            <div class="col-md-10">
-                                <h5 class="card-title"><?php echo $row["book_name"] ?></h5>
-                                <h6 class="card-text text-muted">By <?php echo "<i>".$row['author'] ."</i>";?></h6>
-                                <h6 class="card-text text-muted">Total Pages: <?php echo $row['total_pages'];?></h6>
-                                <h6 class="card-text text-muted">Ratings: <?php echo $row['ratings']. "&#11088"?></h6>
-                                <?php if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) : ?>
-                                    <a href="http://localhost/library/library/partials/loginpage.php" class="btn btn-primary">Read</a>
-                                <?php else:?>
-                                    <a href=<?php echo "http://localhost/library/library/partials/read.php?id=" . $row["book_id"] ?> class="btn btn-primary">Read</a>
-                                <?php endif; ?>
-                            </div>
-                        </div>
+                // echo $cat_query;
+                $cat_result = mysqli_query($conn, $cat_query);
+                if ($cat_result) {
 
-                    </div>
-                       
-    <?php
-            }
-        }
-    }
-?>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
-    </script>
+                    if (mysqli_num_rows($cat_result) > 0) {
+
+                        while ($row = mysqli_fetch_assoc($cat_result)) {
+                ?>
+                            <!-- cards -->
+                            <div class="card mb" style="height: 215px;">
+                                <div class="row">
+                                    <div class="col-md-2">
+                                        <img src="<?php echo "../partials/" . $row['book_cover_url']; ?>" style="width: 170px;height: 190px; " class="img-fluid rounded-start" alt="...">
+                                    </div>
+                                    <div class="col-md-10">
+                                        <h5 class="card-title"><?php echo $row["book_name"] ?></h5>
+                                        <h6 class="card-text text-muted">By <?php echo "<i>" . $row['author'] . "</i>"; ?></h6>
+                                        <h6 class="card-text text-muted">Total Pages: <?php echo $row['total_pages']; ?></h6>
+                                        <h6 class="card-text text-muted">Ratings: <?php echo $row['ratings'] . "&#11088" ?></h6>
+                                        <?php if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) : ?>
+                                            <a href="http://localhost/library/library/partials/loginpage.php" class="btn btn-primary">Read</a>
+                                        <?php else : ?>
+                                            <a href=<?php echo "http://localhost/library/library/partials/read.php?id=" . $row["book_id"] ?> class="btn btn-primary">Read</a>
+                                        <?php endif; ?>
+                                    </div>
+                                </div>
+
+                            </div>
+
+                <?php
+                        }
+                    }
+                }
+                ?>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous">
+                </script>
 </body>
+
 </html>

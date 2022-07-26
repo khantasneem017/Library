@@ -97,7 +97,7 @@
                 <img src="assets/caro2.jpg" class="d-block w-100" alt="...">
                 <div class="carousel-caption d-none d-md-block ">
                     <h3><strong>Welcome to<br> <em>Let's Read!</em></strong></h3>
-                    <button class="btn btn-danger">Books</button>
+                    <a class="btn btn-danger" href='#books'>Books</a>
                     <button class="btn btn-success"
                         onclick="window.location.href='http:/library/library/news/news.html'">News</button>
                 </div>
@@ -106,7 +106,7 @@
                 <img src="assets/caro3.jpg" class="d-block w-100 " alt="...">
                 <div class="carousel-caption d-none d-md-block ">
                     <h3><strong>Welcome to <br><em>Let's Read!</em></strong></h3>
-                    <button class="btn btn-danger">Books</button>
+                    <a class="btn btn-danger" href='#books'>Books</a>
                     <button class="btn btn-success"
                         onclick="window.location.href='http:/library/library/news/news.html'">News</button>
                 </div>
