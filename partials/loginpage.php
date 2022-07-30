@@ -26,7 +26,7 @@
                         <a class="nav-link" aria-current="page" href="../index.php">Home</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="about.php">About</a>
+                        <a class="nav-link" href="about.html">About</a>
                     </li>
                     <li class="nav-item">
                         <a class="nav-link" href="feedback.php">Feedback</a>
@@ -90,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
                     //echo "$role";
                     if(mysqli_stmt_fetch($stmt))
                     {
-                        if($password == $pass)
+                        if(password_verify($password, $pass))
                         {
                             // this means the password is corrct. Allow user to login
                             session_start();
@@ -157,7 +157,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
                         </form>
                         <hr class="mt-4">
                         <div class="col-12">
-                            <p class="text-center mb-0">Don't have an account yet? <a href="/signup.php">Signup</a></p>
+                            <p class="text-center mb-0">Don't have an account yet? <a href="signup.php">Signup</a></p>
                         </div>
                     </div>
                 </div>

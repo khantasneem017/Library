@@ -79,7 +79,9 @@
                         }
                     }
                     else{
-                        echo "Something went wrong.";
+                        echo '<div class="alert alert-warning" role="alert">
+                        <strong>User already exist!</strong>Try to login or use another email-id.
+                      </div>';
                     }
                 }
             }
@@ -101,23 +103,15 @@
             //if there were no error then insert into database
             if(empty($email_err) && empty($pass_err) && empty($conpass_err)){
                 $sql="INSERT INTO `user` (`password`, `first_name`, `last_name`, `phone`, `signup_date`, `email_id`) 
-                VALUES ('$pass','$fname', '$lname', '$phone', current_timestamp(), '$email');";
+                VALUES (?,'$fname', '$lname', '$phone', current_timestamp(), '$email');";
                 $stmt = mysqli_prepare($conn,$sql);
                 if($stmt){
-                    mysqli_stmt_bind_param($stmt, "ss", $param_pass);
-
                     //set these parameters
-                    $param_email = $email;
+                    mysqli_stmt_bind_param($stmt, "s", $param_pass);
                     $param_pass  = password_hash($pass,PASSWORD_DEFAULT);
                 }
                 // TRY tro execute the query
                 if(mysqli_stmt_execute($stmt)){
-                    echo '<div class="alert alert-success" role="alert">
-                    <h4 class="alert-heading">Successful!</h4>
-                    <p>Welcome, you successfully read this important alert message. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content.</p>
-                    <hr>
-                    <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy.</p>
-                  </div>';
                     header("location: loginpage.php");
                 }
                 else{
