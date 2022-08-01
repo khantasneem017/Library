@@ -145,12 +145,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
                                 <label for="password">Password</label>
                                 <input type="password" name="password" id="password" class="form-control" placeholder="Password">
                             </div>
-                            <div class="col-12">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" id="rememberMe">
-                                    <label class="form-check-label" for="rememberMe"> Remember me</label>
-                                </div>
-                            </div>
+                            
                             <div class="col-12">
                                 <button type="submit" class="btn btn-primary float-end" id="login" >Login</button>
                             </div>

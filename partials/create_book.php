@@ -54,20 +54,23 @@
             $cover_target_file= $cover_target_dir . basename($_FILES["book_cover_file"]["name"]);
             $uploadOk = 1;
             $imageFileType = strtolower(pathinfo($cover_target_file,PATHINFO_EXTENSION));
-
+            $book_target_dir = "uploads/book/";
+            $book_target_file = $book_target_dir . basename($_FILES["book_file"]["name"]);
+            $bookFileType = strtolower(pathinfo($book_target_file,PATHINFO_EXTENSION));
             // Check if image file is a actual image or fake image
             if(isset($_POST["submit"])) {
-                $check = getimagesize($_FILES["book_cover_file"]["tmp_name"]);
-                if($check !== false) {
-                    echo "File is an image - " . $check["mime"] . ".";
+                $check_cover = getimagesize($_FILES["book_cover_file"]["tmp_name"]);
+                $check_book = filesize($_FILES["book_file"]["book_name"]);
+                if($check_cover !== false && $check_book !== false) {
+                    // echo "File is an image - " . $check["mime"] . ".";
                     $uploadOk = 1;
                 } else {
-                    echo "File is not an image.";
+                    // echo "File is not an image.";
                     $uploadOk = 0;
                 }
             }
             // Check if file already exists
-            if (file_exists($cover_target_file)) {
+            if (file_exists($cover_target_file) && file_exists($book_target_file)) {
                 echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
                 <strong>Error!</strong> File could not upload.
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
@@ -76,13 +79,16 @@
             }
             
             // Check file size
-            if ($_FILES["book_cover_file"]["size"] > 900000) {
-                echo "Sorry, your file is too large.";
+            if ($_FILES["book_cover_file"]["size"] > 9000000 && $_FILES['book_file']['size']>15000000000) {
+                echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
+                <strong>Error!</strong> File size too large.
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+            </div>';
                 $uploadOk = 0;
             }
             
             // Allow certain file formats
-            if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "webp")
+            if($imageFileType != "jpg" || $imageFileType != "png" || $imageFileType != "jpeg" || $imageFileType != "webp" || $bookFileType != "pdf")
              {
                 $uploadOk = 0;
             }
@@ -100,18 +106,18 @@
                 echo "Sorry, there was an error uploading your file.";
                 }
             }
-            $book_target_dir = "uploads/book/";
-            $book_target_file = $book_target_dir . basename($_FILES["book_file"]["name"]);
             move_uploaded_file($_FILES["book_file"]["tmp_name"], $book_target_file);
 
             $query="INSERT INTO `books`(`book_name`, `author`, `publisher`, `publishing_date`, `sub_id`, `cat_id`, `ratings`, `isbn`, `total_pages`, `book_file_url`,`book_cover_url`)
              VALUES ('$book_name','$author','$publisher','$pub_date','$sub_id','$cat_id','$ratings','$isbn','$pages','$book_target_file','$cover_target_file') ";
             $result=mysqli_query($conn,$query);
             if($result){
-                echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+                if($uploadOk!=0){
+                    echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
             <strong>Success!</strong> Your entry is sucessfully submitted.
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>';
+                }
                 
             }
             else{
@@ -133,23 +139,23 @@
                     <form action="create_book.php" method='post' enctype="multipart/form-data">
                         <div class="mb-3 text-black">
                             <label for="books" class="form-label">Book Name</label>
-                            <input type="text" class="form-control" name="book_name" id="books">
+                            <input type="text" class="form-control" name="book_name" id="books" require="">
                         </div>
                         <div class="mb-3 text-black">
                             <label for="author" class="form-label">Author</label>
-                            <input type="text" class="form-control" name="author" id="author">
+                            <input type="text" class="form-control" name="author" id="author" require="">
                         </div>
                         <div class="mb-3 text-black">
                             <label for="publisher" class="form-label">Publisher</label>
-                            <input type="text" class="form-control" name="publisher" id="publisher">
+                            <input type="text" class="form-control" name="publisher" id="publisher" require="">
                         </div>
                         <div class="mb-3 text-black">
                             <label for="pub_date" class="form-label">Publishing Date</label>
-                            <input type="number" class="form-control" min="0" max="3000" name="pub_date" id="pub_date">
+                            <input type="number" class="form-control" min="0" max="3000" name="pub_date" id="pub_date" require="">
                         </div>
                         <div class="mb-3 text-black">
                             <label for="sub-id" class="form-label">Subject</label>
-                            <select class="form-select" name="sub-id" id="sub-id">
+                            <select class="form-select" name="sub-id" id="sub-id" require="">
                                 <option selected>-Select</option>
                                 <?php while($row1 = mysqli_fetch_array($result_sub)):; ?>
                                 <option value="<?php echo $row1[0] ?>"><?php echo $row1[1]; ?></option>
@@ -158,7 +164,7 @@
                         </div>
                         <div class="mb-3 text-black">
                         <label for="cat-id" class="form-label">Category</label>
-                            <select class="form-select" name="cat-id" id="cat-id">
+                            <select class="form-select" name="cat-id" id="cat-id" require="">
                                 <option selected>-Select</option>
                                 <?php while($row2 = mysqli_fetch_array($result_cat)):; ?>
                                 <option value="<?php echo $row2[0] ?>"><?php echo $row2[1]; ?></option>
@@ -167,23 +173,23 @@
                         </div>
                         <div class="mb-3 text-black">
                             <label for="ratings" class="form-label">Ratings</label>
-                            <input type="number" class="form-control" min="0" max="5" name="ratings" id="ratings">
+                            <input type="number" class="form-control" min="0" max="5" name="ratings" id="ratings" require="">
                         </div>
                         <div class="mb-3 text-black">
                             <label for="isbn" class="form-label">ISBN</label>
-                            <input type="text" class="form-control" min='0' max='9999999999999' name="isbn" id="isbn">
+                            <input type="text" class="form-control" min='0' max='9999999999999' name="isbn" id="isbn" require="">
                         </div>
                         <div class="mb-3 text-black">
                             <label for="pages" class="form-label">Total Pages</label>
-                            <input type="number" class="form-control" min='1' max='5000' name="pages" id="pages">
+                            <input type="number" class="form-control" min='1' max='5000' name="pages" id="pages" require="">
                         </div>
                         <div class="mb-3 text-black">
                             <label for="book_cover_file" class="form-label">Book cover</label>
-                            <input type="file" class="form-control" name="book_cover_file" id="book_cover_file" accept=".jpg, .png, .jpeg, .webp">
+                            <input type="file" class="form-control" name="book_cover_file" id="book_cover_file" accept=".jpg, .png, .jpeg, .webp" require="">
                         </div>
                         <div class="mb-3 text-black">
                             <label for="book_file" class="form-label">Book file</label>
-                            <input type="file" class="form-control" name="book_file" id="book_file" accept=".pdf">
+                            <input type="file" class="form-control" name="book_file" id="book_file" accept=".pdf" require="">
                         </div>
                         <div class="col-auto button">
                             <button type="submit" class='btn btn-primary'>Upload</button>
