@@ -12,8 +12,7 @@
     <title>Admin Dashboard</title>
 </head>
 <body style="background-color: #efe6ea;">
-    <?php session_start(); 
-    ?>
+    <?php session_start();?>
 <nav class="navbar navbar-expand-lg navbar-dark bglavender">
         <div class="container-fluid">
             <a class="navbar-brand page-name" href="index.php">Let's Read</a>

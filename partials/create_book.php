@@ -62,10 +62,8 @@
                 $check_cover = getimagesize($_FILES["book_cover_file"]["tmp_name"]);
                 $check_book = filesize($_FILES["book_file"]["book_name"]);
                 if($check_cover !== false && $check_book !== false) {
-                    // echo "File is an image - " . $check["mime"] . ".";
                     $uploadOk = 1;
                 } else {
-                    // echo "File is not an image.";
                     $uploadOk = 0;
                 }
             }
@@ -139,23 +137,23 @@
                     <form action="create_book.php" method='post' enctype="multipart/form-data">
                         <div class="mb-3 text-black">
                             <label for="books" class="form-label">Book Name</label>
-                            <input type="text" class="form-control" name="book_name" id="books" require="">
+                            <input type="text" class="form-control" name="book_name" id="books" required>
                         </div>
                         <div class="mb-3 text-black">
                             <label for="author" class="form-label">Author</label>
-                            <input type="text" class="form-control" name="author" id="author" require="">
+                            <input type="text" class="form-control" name="author" id="author" required>
                         </div>
                         <div class="mb-3 text-black">
                             <label for="publisher" class="form-label">Publisher</label>
-                            <input type="text" class="form-control" name="publisher" id="publisher" require="">
+                            <input type="text" class="form-control" name="publisher" id="publisher" required>
                         </div>
                         <div class="mb-3 text-black">
                             <label for="pub_date" class="form-label">Publishing Date</label>
-                            <input type="number" class="form-control" min="0" max="3000" name="pub_date" id="pub_date" require="">
+                            <input type="number" class="form-control" min="0" max="3000" name="pub_date" id="pub_date" required>
                         </div>
                         <div class="mb-3 text-black">
-                            <label for="sub-id" class="form-label">Subject</label>
-                            <select class="form-select" name="sub-id" id="sub-id" require="">
+                            <label for="sub-id" class="form-label">Sub-Category</label>
+                            <select class="form-select" name="sub-id" id="sub-id" required>
                                 <option selected>-Select</option>
                                 <?php while($row1 = mysqli_fetch_array($result_sub)):; ?>
                                 <option value="<?php echo $row1[0] ?>"><?php echo $row1[1]; ?></option>
@@ -164,7 +162,7 @@
                         </div>
                         <div class="mb-3 text-black">
                         <label for="cat-id" class="form-label">Category</label>
-                            <select class="form-select" name="cat-id" id="cat-id" require="">
+                            <select class="form-select" name="cat-id" id="cat-id" required>
                                 <option selected>-Select</option>
                                 <?php while($row2 = mysqli_fetch_array($result_cat)):; ?>
                                 <option value="<?php echo $row2[0] ?>"><?php echo $row2[1]; ?></option>
@@ -173,23 +171,23 @@
                         </div>
                         <div class="mb-3 text-black">
                             <label for="ratings" class="form-label">Ratings</label>
-                            <input type="number" class="form-control" min="0" max="5" name="ratings" id="ratings" require="">
+                            <input type="number" class="form-control" min="0" max="5" name="ratings" id="ratings" required>
                         </div>
                         <div class="mb-3 text-black">
                             <label for="isbn" class="form-label">ISBN</label>
-                            <input type="text" class="form-control" min='0' max='9999999999999' name="isbn" id="isbn" require="">
+                            <input type="text" class="form-control" min='0' max='9999999999999' name="isbn" id="isbn" required>
                         </div>
                         <div class="mb-3 text-black">
                             <label for="pages" class="form-label">Total Pages</label>
-                            <input type="number" class="form-control" min='1' max='5000' name="pages" id="pages" require="">
+                            <input type="number" class="form-control" min='1' max='5000' name="pages" id="pages" required>
                         </div>
                         <div class="mb-3 text-black">
                             <label for="book_cover_file" class="form-label">Book cover</label>
-                            <input type="file" class="form-control" name="book_cover_file" id="book_cover_file" accept=".jpg, .png, .jpeg, .webp" require="">
+                            <input type="file" class="form-control" name="book_cover_file" id="book_cover_file" accept=".jpg, .png, .jpeg, .webp" required>
                         </div>
                         <div class="mb-3 text-black">
                             <label for="book_file" class="form-label">Book file</label>
-                            <input type="file" class="form-control" name="book_file" id="book_file" accept=".pdf" require="">
+                            <input type="file" class="form-control" name="book_file" id="book_file" accept=".pdf" required>
                         </div>
                         <div class="col-auto button">
                             <button type="submit" class='btn btn-primary'>Upload</button>
