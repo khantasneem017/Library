@@ -186,33 +186,26 @@
             <div class="row">
                 <div class="clients-carousel owl-carousel">
                     <div class="single-box">
-                        <div class="img-area"><img alt="" class="img-fluid" src="https://images.pexels.com/photos/3525908/pexels-photo-3525908.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
-                        </div>
-                        <div class="content">
-                            <h4>Jason Doe</h4>
-                            <h7>Researcher,University of California</h7>
-
-                            <p>"I have found this library to be very useful.Thankyou!"</p>
-                            <section class="rating-star">
-                                <div class="icons">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa-solid fa-star-sharp-half"></i>
-
-                                </div>
-                            </section>
+                        
+                        <div class="content"><?php 
+            $comment_sql= "SELECT * FROM `feedback` WHERE feedback_type='praise' LIMIT 1;";
+            $comment_result=mysqli_query($conn,$comment_sql);
+            if($comment_result){
+                if(mysqli_num_rows($comment_result)>0)
+                while($row=mysqli_fetch_assoc($comment_result)){?>
+                            <h4><?php echo $row['name'];?></h4>
+                            <p><?php echo $row['comments']?></p>
                         </div>
                     </div>
+                        <?php
+                            }   
+                        }
+                        ?>   
                     <div class="single-box">
-                        <div class="img-area"><img alt="" class="img-fluid" src="https://images.pexels.com/photos/5042302/pexels-photo-5042302.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
-                        </div>
                         <div class="content">
-                            <h4>Dave Wood</h4>
-                            <h6>Student,Stanford University</h6>
+                            <h4>Darshita Verma</h4>
                             <p>"This library has been quite useful for me.I found a wide range of contents here."</p>
-                            <section class="rating-star">
+                            <!-- <section class="rating-star">
                                 <div class="icons">
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
@@ -220,37 +213,26 @@
                                     <i class="fa fa-star-o"></i>
 
                                 </div>
-                            </section>
+                            </section> -->
                         </div>
                     </div>
                     <div class="single-box">
-                        <div class="img-area"><img alt="" class="img-fluid" src="https://images.pexels.com/photos/3211476/pexels-photo-3211476.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
-                        </div>
                         <div class="content">
-                            <h4>Matt Demon</h4>
-                            <h6>Teacher,Cambridge University</h6>
+                            <h4>Manish Sharma</h4>
                             <p>"I found the ebooks i was searching for and would recommend to my students as well."</p>
-                            <section class="rating-star">
-                                <div class="icons">
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                    <i class="fa fa-star"></i>
-                                </div>
-                            </section>
+                            
                         </div>
                     </div>
                     <div class="single-box">
-                        <div class="img-area"><img alt="" class="img-fluid" src="https://images.pexels.com/photos/1270076/pexels-photo-1270076.jpeg?auto=compress&cs=tinysrgb&dpr=2&h=650&w=940">
-                        </div>
                         <div class="content">
-                            <!-- <span class="rating-star"><i class="icofont-star"></i><i class="icofont-star"></i><i
+                            <span class="rating-star"><i class="icofont-star"></i><i class="icofont-star"></i><i
                                     class="icofont-star"></i><i class="icofont-star"></i><i
-                                    class="icofont-star"></i></span> -->
-                            <h4>jimmy kimmel</h4>
-                            <h6>Professor,Massachusets Institute of Technology</h6>
-                            <p>"Good resources!"</p>
-                            <section class="rating-star">
+                                    class="icofont-star"></i></span> 
+                             <h4>jimmy kimmel</h4>
+                            <p>"Good resources!"<br>
+                                Nice UI.
+                            </p>
+                            <!-- <section class="rating-star">
                                 <div class="icons">
                                     <i class="fa fa-star"></i>
                                     <i class="fa fa-star"></i>
@@ -258,8 +240,8 @@
                                     <i class="fa fa-star"></i>
                                     <i class="fa-solid fa-star-half-stroke"></i>
                                 </div>
-                            </section>
-                        </div>
+                            </section>  -->
+                        </div> 
                     </div>
                 </div>
             </div>
