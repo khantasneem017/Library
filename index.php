@@ -228,7 +228,7 @@
                             <span class="rating-star"><i class="icofont-star"></i><i class="icofont-star"></i><i
                                     class="icofont-star"></i><i class="icofont-star"></i><i
                                     class="icofont-star"></i></span> 
-                             <h4>jimmy kimmel</h4>
+                             <h4>Suman Singh</h4>
                             <p>"Good resources!"<br>
                                 Nice UI.
                             </p>

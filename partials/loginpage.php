@@ -53,7 +53,14 @@
 <?php
 //This script will handle login
 session_start();
-
+if(isset($_GET['signin'])){
+    if($_GET['signin']=='success'){
+        echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
+        <strong>You have successfully signed up!</strong> 
+        <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+      </div>';
+    }
+}
 // check if the user is already logged in
 if(isset($_SESSION['email']))
 {

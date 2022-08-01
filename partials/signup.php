@@ -80,7 +80,7 @@
                     }
                     else{
                         echo '<div class="alert alert-warning" role="alert">
-                        <strong>User already exist!</strong>Try to login or use another email-id.
+                        <strong>There was an error trying to add your email! </strong>Try to login or use another email-id.
                       </div>';
                     }
                 }
@@ -112,12 +112,16 @@
                 }
                 // TRY tro execute the query
                 if(mysqli_stmt_execute($stmt)){
-                    header("location: loginpage.php");
+                    header("location: loginpage.php?signin=success");
                 }
                 else{
                     echo "Something went wrong.. Cannot redirect!";
                 }
                 mysqli_stmt_close($stmt);
+            } else {
+                echo '<div class="alert alert-warning" role="alert">
+                        <strong>User already exist!</strong>Try to login or use another email-id.
+                      </div>';
             }
             mysqli_close($conn);
         }
