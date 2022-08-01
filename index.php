@@ -24,7 +24,7 @@
     <title>Let's Read</title>
 </head>
 
-<body>
+<body style="background-color: #efe6ea;">
     <!-- Nav Bar-->
     <nav class="navbar navbar-expand-lg navbar-dark bglavender">
         <div class="container-fluid">

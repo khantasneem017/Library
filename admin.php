@@ -11,7 +11,7 @@
     <link rel="stylesheet" href="stylesheet/style.css">
     <title>Admin Dashboard</title>
 </head>
-<body>
+<body style="background-color: #efe6ea;">
     <?php session_start(); 
     ?>
 <nav class="navbar navbar-expand-lg navbar-dark bglavender">
