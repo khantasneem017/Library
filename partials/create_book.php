@@ -60,35 +60,35 @@
             // Check if image file is a actual image or fake image
             if(isset($_POST["submit"])) {
                 $check_cover = getimagesize($_FILES["book_cover_file"]["tmp_name"]);
-                $check_book = filesize($_FILES["book_file"]["book_name"]);
+                $check_book = filesize($_FILES["book_file"]["bookname"]);
                 if($check_cover !== false && $check_book !== false) {
                     $uploadOk = 1;
+                    echo "here";
                 } else {
                     $uploadOk = 0;
                 }
             }
             // Check if file already exists
-            if (file_exists($cover_target_file) && file_exists($book_target_file)) {
-                echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
-                <strong>Error!</strong> File could not upload.
-                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-            </div>';
+            if (file_exists($cover_target_file)) {
                 $uploadOk = 0;
+                // echo "here";
             }
             
             // Check file size
-            if ($_FILES["book_cover_file"]["size"] > 9000000 && $_FILES['book_file']['size']>15000000000) {
+            if ($_FILES["book_cover_file"]["size"] > 90000000) {
                 echo '<div class="alert alert-warning alert-dismissible fade show" role="alert">
                 <strong>Error!</strong> File size too large.
                 <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>';
                 $uploadOk = 0;
+                // echo "here";
             }
             
             // Allow certain file formats
-            if($imageFileType != "jpg" || $imageFileType != "png" || $imageFileType != "jpeg" || $imageFileType != "webp" || $bookFileType != "pdf")
+            if($imageFileType != "jpg" && $imageFileType != "png" && $imageFileType != "jpeg" && $imageFileType != "webp" && $bookFileType != "pdf")
              {
                 $uploadOk = 0;
+                // echo "here";
             }
            // Check if $uploadOk is set to 0 by an error
             if ($uploadOk == 0) {
@@ -99,9 +99,9 @@
             // if everything is ok, try to upload file
             } else {
                 if (move_uploaded_file($_FILES["book_cover_file"]["tmp_name"], $cover_target_file)) {
-                echo "The file ". htmlspecialchars( basename( $_FILES["book_cover_file"]["name"])). " has been uploaded.";
+                    $uploadOk=1;
                 } else {
-                echo "Sorry, there was an error uploading your file.";
+                    $uploadOk=0;
                 }
             }
             move_uploaded_file($_FILES["book_file"]["tmp_name"], $book_target_file);
@@ -110,12 +110,13 @@
              VALUES ('$book_name','$author','$publisher','$pub_date','$sub_id','$cat_id','$ratings','$isbn','$pages','$book_target_file','$cover_target_file') ";
             $result=mysqli_query($conn,$query);
             if($result){
-                if($uploadOk!=0){
+                if($uploadOk==1){
                     echo '<div class="alert alert-success alert-dismissible fade show" role="alert">
             <strong>Success!</strong> Your entry is sucessfully submitted.
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
             </div>';
                 }
+                
                 
             }
             else{
